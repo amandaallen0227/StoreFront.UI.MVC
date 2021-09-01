@@ -132,6 +132,7 @@ blockquote {
 /*-----------------------------------------------------------------------------------*/
 
 #main-slider {
+    
     position: relative;
     z-index: 5;
     color: #fff;
@@ -207,14 +208,15 @@ blockquote {
     position: relative;
 }
 
-#main-slider .carousel .item.active {
-    opacity: 1;
-    -webkit-transition: opacity ease-in-out 500ms;
-    -moz-transition: opacity ease-in-out 500ms;
-    -o-transition: opacity ease-in-out 500ms;
-    transition: opacity ease-in-out 500ms;
-    z-index: 1;
-}
+    #main-slider .carousel .item.active {
+        opacity: 1;
+        -webkit-transition: opacity ease-in-out 500ms;
+        -moz-transition: opacity ease-in-out 500ms;
+        -o-transition: opacity ease-in-out 500ms;
+        transition: opacity ease-in-out 500ms;
+        z-index: 1;
+        background-image: url('../images/bg/bg1.jpg');
+    }
 
 .home-icon {
     padding: 10px 15px;

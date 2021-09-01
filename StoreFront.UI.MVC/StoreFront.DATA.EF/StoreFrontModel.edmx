@@ -1,0 +1,419 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="StoreFrontModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Coffee">
+          <Key>
+            <PropertyRef Name="CoffeeID" />
+          </Key>
+          <Property Name="CoffeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CoffeeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TypeID" Type="int" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CoffeeStatusID" Type="int" Nullable="false" />
+          <Property Name="SupplierID" Type="int" />
+        </EntityType>
+        <EntityType Name="CoffeeStatus">
+          <Key>
+            <PropertyRef Name="CoffeeStatusID" />
+          </Key>
+          <Property Name="CoffeeStatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusName" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CoffeeSupplier">
+          <Key>
+            <PropertyRef Name="SupplierID" />
+          </Key>
+          <Property Name="SupplierID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SupplierName" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CoffeeType">
+          <Key>
+            <PropertyRef Name="TypeID" />
+          </Key>
+          <Property Name="TypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstN" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="LastN" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="IsMember" Type="bit" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="State" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="PostalCode" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstN" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="LastN" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="TitleID" Type="int" />
+          <Property Name="BirthDate" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="HireDate" Type="varchar" MaxLength="10" />
+          <Property Name="Address" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="State" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="PostalCode" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="Images" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="12" />
+        </EntityType>
+        <EntityType Name="EmployeeTitle">
+          <Key>
+            <PropertyRef Name="TitleID" />
+          </Key>
+          <Property Name="TitleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TitleName" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Coffee_CoffeeStatus1">
+          <End Role="CoffeeStatus" Type="Self.CoffeeStatus" Multiplicity="1" />
+          <End Role="Coffee" Type="Self.Coffee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoffeeStatus">
+              <PropertyRef Name="CoffeeStatusID" />
+            </Principal>
+            <Dependent Role="Coffee">
+              <PropertyRef Name="CoffeeStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Coffee_CoffeeSupplier1">
+          <End Role="CoffeeSupplier" Type="Self.CoffeeSupplier" Multiplicity="0..1" />
+          <End Role="Coffee" Type="Self.Coffee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoffeeSupplier">
+              <PropertyRef Name="SupplierID" />
+            </Principal>
+            <Dependent Role="Coffee">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Coffee_CoffeeType1">
+          <End Role="CoffeeType" Type="Self.CoffeeType" Multiplicity="1" />
+          <End Role="Coffee" Type="Self.Coffee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoffeeType">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="Coffee">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_EmployeeTitle1">
+          <End Role="EmployeeTitle" Type="Self.EmployeeTitle" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeTitle">
+              <PropertyRef Name="TitleID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="TitleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StoreFrontModelStoreContainer">
+          <EntitySet Name="Coffee" EntityType="Self.Coffee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CoffeeStatus" EntityType="Self.CoffeeStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CoffeeSupplier" EntityType="Self.CoffeeSupplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CoffeeType" EntityType="Self.CoffeeType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeTitle" EntityType="Self.EmployeeTitle" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Coffee_CoffeeStatus1" Association="Self.FK_Coffee_CoffeeStatus1">
+            <End Role="CoffeeStatus" EntitySet="CoffeeStatus" />
+            <End Role="Coffee" EntitySet="Coffee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Coffee_CoffeeSupplier1" Association="Self.FK_Coffee_CoffeeSupplier1">
+            <End Role="CoffeeSupplier" EntitySet="CoffeeSupplier" />
+            <End Role="Coffee" EntitySet="Coffee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Coffee_CoffeeType1" Association="Self.FK_Coffee_CoffeeType1">
+            <End Role="CoffeeType" EntitySet="CoffeeType" />
+            <End Role="Coffee" EntitySet="Coffee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_EmployeeTitle1" Association="Self.FK_Employee_EmployeeTitle1">
+            <End Role="EmployeeTitle" EntitySet="EmployeeTitle" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StoreFrontModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Coffee">
+          <Key>
+            <PropertyRef Name="CoffeeID" />
+          </Key>
+          <Property Name="CoffeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CoffeeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TypeID" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CoffeeStatusID" Type="Int32" Nullable="false" />
+          <Property Name="SupplierID" Type="Int32" />
+          <NavigationProperty Name="CoffeeStatu" Relationship="Self.FK_Coffee_CoffeeStatus1" FromRole="Coffee" ToRole="CoffeeStatus" />
+          <NavigationProperty Name="CoffeeSupplier" Relationship="Self.FK_Coffee_CoffeeSupplier1" FromRole="Coffee" ToRole="CoffeeSupplier" />
+          <NavigationProperty Name="CoffeeType" Relationship="Self.FK_Coffee_CoffeeType1" FromRole="Coffee" ToRole="CoffeeType" />
+        </EntityType>
+        <EntityType Name="CoffeeStatu">
+          <Key>
+            <PropertyRef Name="CoffeeStatusID" />
+          </Key>
+          <Property Name="CoffeeStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Coffees" Relationship="Self.FK_Coffee_CoffeeStatus1" FromRole="CoffeeStatus" ToRole="Coffee" />
+        </EntityType>
+        <EntityType Name="CoffeeSupplier">
+          <Key>
+            <PropertyRef Name="SupplierID" />
+          </Key>
+          <Property Name="SupplierID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SupplierName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Coffees" Relationship="Self.FK_Coffee_CoffeeSupplier1" FromRole="CoffeeSupplier" ToRole="Coffee" />
+        </EntityType>
+        <EntityType Name="CoffeeType">
+          <Key>
+            <PropertyRef Name="TypeID" />
+          </Key>
+          <Property Name="TypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Coffees" Relationship="Self.FK_Coffee_CoffeeType1" FromRole="CoffeeType" ToRole="Coffee" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsMember" Type="Boolean" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PostalCode" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TitleID" Type="Int32" />
+          <Property Name="BirthDate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HireDate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PostalCode" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Images" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EmployeeTitle" Relationship="Self.FK_Employee_EmployeeTitle1" FromRole="Employee" ToRole="EmployeeTitle" />
+        </EntityType>
+        <EntityType Name="EmployeeTitle">
+          <Key>
+            <PropertyRef Name="TitleID" />
+          </Key>
+          <Property Name="TitleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TitleName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_EmployeeTitle1" FromRole="EmployeeTitle" ToRole="Employee" />
+        </EntityType>
+        <Association Name="FK_Coffee_CoffeeStatus1">
+          <End Role="CoffeeStatus" Type="Self.CoffeeStatu" Multiplicity="1" />
+          <End Role="Coffee" Type="Self.Coffee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoffeeStatus">
+              <PropertyRef Name="CoffeeStatusID" />
+            </Principal>
+            <Dependent Role="Coffee">
+              <PropertyRef Name="CoffeeStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Coffee_CoffeeSupplier1">
+          <End Role="CoffeeSupplier" Type="Self.CoffeeSupplier" Multiplicity="0..1" />
+          <End Role="Coffee" Type="Self.Coffee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoffeeSupplier">
+              <PropertyRef Name="SupplierID" />
+            </Principal>
+            <Dependent Role="Coffee">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Coffee_CoffeeType1">
+          <End Role="CoffeeType" Type="Self.CoffeeType" Multiplicity="1" />
+          <End Role="Coffee" Type="Self.Coffee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoffeeType">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="Coffee">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_EmployeeTitle1">
+          <End Role="EmployeeTitle" Type="Self.EmployeeTitle" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeTitle">
+              <PropertyRef Name="TitleID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="TitleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StoreFrontEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Coffees" EntityType="Self.Coffee" />
+          <EntitySet Name="CoffeeStatus" EntityType="Self.CoffeeStatu" />
+          <EntitySet Name="CoffeeSuppliers" EntityType="Self.CoffeeSupplier" />
+          <EntitySet Name="CoffeeTypes" EntityType="Self.CoffeeType" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="EmployeeTitles" EntityType="Self.EmployeeTitle" />
+          <AssociationSet Name="FK_Coffee_CoffeeStatus1" Association="Self.FK_Coffee_CoffeeStatus1">
+            <End Role="CoffeeStatus" EntitySet="CoffeeStatus" />
+            <End Role="Coffee" EntitySet="Coffees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Coffee_CoffeeSupplier1" Association="Self.FK_Coffee_CoffeeSupplier1">
+            <End Role="CoffeeSupplier" EntitySet="CoffeeSuppliers" />
+            <End Role="Coffee" EntitySet="Coffees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Coffee_CoffeeType1" Association="Self.FK_Coffee_CoffeeType1">
+            <End Role="CoffeeType" EntitySet="CoffeeTypes" />
+            <End Role="Coffee" EntitySet="Coffees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_EmployeeTitle1" Association="Self.FK_Employee_EmployeeTitle1">
+            <End Role="EmployeeTitle" EntitySet="EmployeeTitles" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StoreFrontModelStoreContainer" CdmEntityContainer="StoreFrontEntities">
+          <EntitySetMapping Name="Coffees">
+            <EntityTypeMapping TypeName="StoreFrontModel.Coffee">
+              <MappingFragment StoreEntitySet="Coffee">
+                <ScalarProperty Name="CoffeeID" ColumnName="CoffeeID" />
+                <ScalarProperty Name="CoffeeName" ColumnName="CoffeeName" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CoffeeStatusID" ColumnName="CoffeeStatusID" />
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CoffeeStatus">
+            <EntityTypeMapping TypeName="StoreFrontModel.CoffeeStatu">
+              <MappingFragment StoreEntitySet="CoffeeStatus">
+                <ScalarProperty Name="CoffeeStatusID" ColumnName="CoffeeStatusID" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CoffeeSuppliers">
+            <EntityTypeMapping TypeName="StoreFrontModel.CoffeeSupplier">
+              <MappingFragment StoreEntitySet="CoffeeSupplier">
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CoffeeTypes">
+            <EntityTypeMapping TypeName="StoreFrontModel.CoffeeType">
+              <MappingFragment StoreEntitySet="CoffeeType">
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="StoreFrontModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="FirstN" ColumnName="FirstN" />
+                <ScalarProperty Name="LastN" ColumnName="LastN" />
+                <ScalarProperty Name="IsMember" ColumnName="IsMember" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="StoreFrontModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="FirstN" ColumnName="FirstN" />
+                <ScalarProperty Name="LastN" ColumnName="LastN" />
+                <ScalarProperty Name="TitleID" ColumnName="TitleID" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Images" ColumnName="Images" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeTitles">
+            <EntityTypeMapping TypeName="StoreFrontModel.EmployeeTitle">
+              <MappingFragment StoreEntitySet="EmployeeTitle">
+                <ScalarProperty Name="TitleID" ColumnName="TitleID" />
+                <ScalarProperty Name="TitleName" ColumnName="TitleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

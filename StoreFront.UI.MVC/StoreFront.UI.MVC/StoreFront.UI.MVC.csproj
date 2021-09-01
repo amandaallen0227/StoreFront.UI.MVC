@@ -167,7 +167,14 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Content\CoffeesController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CoffeeStatusController.cs" />
+    <Compile Include="Controllers\CoffeeSuppliersController.cs" />
+    <Compile Include="Controllers\CoffeeTypesController.cs" />
+    <Compile Include="Controllers\CustomersController.cs" />
+    <Compile Include="Controllers\EmployeesController.cs" />
+    <Compile Include="Controllers\EmployeeTitlesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
@@ -177,6 +184,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
+    <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -234,7 +242,6 @@
     <Content Include="fonts\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\fonts\Pe-icon-7-stroke.svg" />
     <Content Include="Global.asax" />
-    <Content Include="configs\connections.config" />
     <Content Include="Scripts\js\bootstrap.min.js" />
     <Content Include="Scripts\js\html5shiv.js" />
     <Content Include="Scripts\js\init.js" />
@@ -796,6 +803,42 @@
     <Content Include="_Archive\_OldScripts\respond.js" />
     <Content Include="_Archive\_OldScripts\respond.min.js" />
     <Content Include="Views\Shared\_OriginalLayout.cshtml" />
+    <Content Include="Views\Home\EmailConfirmation.cshtml" />
+    <Content Include="Views\Coffees\Create.cshtml" />
+    <Content Include="Views\Coffees\Delete.cshtml" />
+    <Content Include="Views\Coffees\Details.cshtml" />
+    <Content Include="Views\Coffees\Edit.cshtml" />
+    <Content Include="Views\Coffees\Index.cshtml" />
+    <Content Include="Views\CoffeeStatus\Create.cshtml" />
+    <Content Include="Views\CoffeeStatus\Delete.cshtml" />
+    <Content Include="Views\CoffeeStatus\Details.cshtml" />
+    <Content Include="Views\CoffeeStatus\Edit.cshtml" />
+    <Content Include="Views\CoffeeStatus\Index.cshtml" />
+    <Content Include="Views\CoffeeSuppliers\Create.cshtml" />
+    <Content Include="Views\CoffeeSuppliers\Delete.cshtml" />
+    <Content Include="Views\CoffeeSuppliers\Details.cshtml" />
+    <Content Include="Views\CoffeeSuppliers\Edit.cshtml" />
+    <Content Include="Views\CoffeeSuppliers\Index.cshtml" />
+    <Content Include="Views\CoffeeTypes\Create.cshtml" />
+    <Content Include="Views\CoffeeTypes\Delete.cshtml" />
+    <Content Include="Views\CoffeeTypes\Details.cshtml" />
+    <Content Include="Views\CoffeeTypes\Edit.cshtml" />
+    <Content Include="Views\CoffeeTypes\Index.cshtml" />
+    <Content Include="Views\Customers\Create.cshtml" />
+    <Content Include="Views\Customers\Delete.cshtml" />
+    <Content Include="Views\Customers\Details.cshtml" />
+    <Content Include="Views\Customers\Edit.cshtml" />
+    <Content Include="Views\Customers\Index.cshtml" />
+    <Content Include="Views\Employees\Create.cshtml" />
+    <Content Include="Views\Employees\Delete.cshtml" />
+    <Content Include="Views\Employees\Details.cshtml" />
+    <Content Include="Views\Employees\Edit.cshtml" />
+    <Content Include="Views\Employees\Index.cshtml" />
+    <Content Include="Views\EmployeeTitles\Create.cshtml" />
+    <Content Include="Views\EmployeeTitles\Delete.cshtml" />
+    <Content Include="Views\EmployeeTitles\Details.cshtml" />
+    <Content Include="Views\EmployeeTitles\Edit.cshtml" />
+    <Content Include="Views\EmployeeTitles\Index.cshtml" />
     <None Include="_Archive\_OldScripts\jquery.validate-vsdoc.js" />
     <None Include="_Archive\_OldScripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Web.config" />
@@ -899,6 +942,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="configs\" />
     <Folder Include="Content\images\logo\" />
     <Folder Include="Content\images\overlays\" />
     <Folder Include="Content\images\prettyPhoto\dark_rounded\" />
@@ -918,6 +962,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StoreFront.DATA.EF\StoreFront.DATA.EF.csproj">
+      <Project>{057c5344-c18d-4632-a947-9cf51b06b284}</Project>
+      <Name>StoreFront.DATA.EF</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
