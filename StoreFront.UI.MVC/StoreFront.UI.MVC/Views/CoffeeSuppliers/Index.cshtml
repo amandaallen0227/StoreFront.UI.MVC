@@ -1,33 +1,56 @@
 ﻿@model IEnumerable<StoreFront.DATA.EF.CoffeeSupplier>
 
+
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Our Partners";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.SupplierName)
-        </th>
-        <th></th>
-    </tr>
+    <div id="content-wrapper" style="padding: 9%;">
+        <div class="container">
+            <div id="content-wrapper">
+                @if (User.IsInRole("Admin"))
+                {
+                    <p>
+                        @Html.ActionLink("Create New", "Create")
+                    </p>
+                }
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SupplierName)
+                        </th>
+                        <th></th>
+                    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.SupplierName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.SupplierID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.SupplierID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.SupplierID })
-        </td>
-    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SupplierName)
+                            </td>
+                            <td>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <span>@Html.ActionLink("Edit", "Edit", new { id = item.SupplierID }) |</span>
+                                }
+
+                                @Html.ActionLink("Details", "Details", new { id = item.SupplierID }) |
+
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <span>@Html.ActionLink("Delete", "Delete", new { id = item.SupplierID })</span>
+                                }
+
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 }
-
-</table>

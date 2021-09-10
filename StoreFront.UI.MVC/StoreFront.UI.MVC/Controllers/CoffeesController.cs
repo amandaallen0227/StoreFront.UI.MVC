@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using StoreFront.DATA.EF;
 
-namespace StoreFront.UI.MVC.Content
+namespace StoreFront.UI.MVC.Controllers
 {
     public class CoffeesController : Controller
     {

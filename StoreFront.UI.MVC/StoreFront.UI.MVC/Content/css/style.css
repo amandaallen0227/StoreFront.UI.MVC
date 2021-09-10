@@ -144,7 +144,7 @@ blockquote {
 
 .backstretch:before {
     content: '';
-    background-image: url(../images/overlays/04.png);
+    background-image: url(~/Content/images/coffeeBags/_1tan-coffeecup.jpg);
     min-width: 100%;
     height: 100%;
     position: absolute;
@@ -861,7 +861,7 @@ ul.tag-cloud li {
 }
 
 .opaqued {
-    padding: 10px 0;
+    padding: 12px 0;
     background-color: rgba(0, 0, 0, 0.6);
     -webkit-transition: all .5s ease-in-out;
     -moz-transition: all .5s ease-in-out;

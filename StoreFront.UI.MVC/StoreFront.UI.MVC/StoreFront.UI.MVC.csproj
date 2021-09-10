@@ -167,8 +167,8 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Content\CoffeesController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CoffeesController.cs" />
     <Compile Include="Controllers\CoffeeStatusController.cs" />
     <Compile Include="Controllers\CoffeeSuppliersController.cs" />
     <Compile Include="Controllers\CoffeeTypesController.cs" />
@@ -194,6 +194,7 @@
     <Content Include=".gitignore.xml" />
     <Content Include="Content\css\animate.css" />
     <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\custom.css" />
     <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\css\pe-icons.css" />
     <Content Include="Content\css\prettyPhoto.css" />
@@ -204,6 +205,19 @@
     <Content Include="Content\images\bg\bg4.jpg" />
     <Content Include="Content\images\bg\bg5.jpg" />
     <Content Include="Content\images\bg\bg6.jpg" />
+    <Content Include="Content\images\coffeeBags\battlecreek-coffee-roasters-HvzR2yXtii4-unsplash.jpg" />
+    <Content Include="Content\images\coffeeBags\battlecreek-coffee-roasters-_1wDmr4dtuk-unsplash.jpg" />
+    <Content Include="Content\images\coffeeBags\blake-wisz-qrTdOMc5EqE-unsplash.jpg" />
+    <Content Include="Content\images\coffeeBags\jon-tyson-fIVD9x3JvDo-unsplash.jpg" />
+    <Content Include="Content\images\coffeeBags\jon-tyson-KRedbshBxEk-unsplash.jpg" />
+    <Content Include="Content\images\coffeeBags\lex-sirikiat-QouiCn7u6kw-unsplash.jpg" />
+    <Content Include="Content\images\coffeeBags\manki-kim-mv7kxYh5Rko-unsplash.jpg" />
+    <Content Include="Content\images\coffeeBags\maryna-vasylieva-vasilievame-2xDIrOkhEb0-unsplash.jpg" />
+    <Content Include="Content\images\coffeeBags\mike-kenneally-TD4DBagg2wE-unsplash.jpg" />
+    <Content Include="Content\images\coffeeBags\nathan-dumlao-WAe-QkpE6as-unsplash.jpg" />
+    <Content Include="Content\images\coffeeBags\ryan-spaulding-_uncFvtOC-4-unsplash.jpg" />
+    <Content Include="Content\images\coffeeBags\sara-dubler-2u7KhYAl24A-unsplash.jpg" />
+    <Content Include="Content\images\coffeeBags\_1tan-coffeecup.jpg" />
     <Content Include="Content\images\ico\apple-touch-icon-114x114.png" />
     <Content Include="Content\images\ico\apple-touch-icon-144x144.png" />
     <Content Include="Content\images\ico\apple-touch-icon-57x57.png" />
@@ -804,11 +818,6 @@
     <Content Include="_Archive\_OldScripts\respond.min.js" />
     <Content Include="Views\Shared\_OriginalLayout.cshtml" />
     <Content Include="Views\Home\EmailConfirmation.cshtml" />
-    <Content Include="Views\Coffees\Create.cshtml" />
-    <Content Include="Views\Coffees\Delete.cshtml" />
-    <Content Include="Views\Coffees\Details.cshtml" />
-    <Content Include="Views\Coffees\Edit.cshtml" />
-    <Content Include="Views\Coffees\Index.cshtml" />
     <Content Include="Views\CoffeeStatus\Create.cshtml" />
     <Content Include="Views\CoffeeStatus\Delete.cshtml" />
     <Content Include="Views\CoffeeStatus\Details.cshtml" />
@@ -839,6 +848,12 @@
     <Content Include="Views\EmployeeTitles\Details.cshtml" />
     <Content Include="Views\EmployeeTitles\Edit.cshtml" />
     <Content Include="Views\EmployeeTitles\Index.cshtml" />
+    <Content Include="Views\Coffees\Create.cshtml" />
+    <Content Include="Views\Coffees\Delete.cshtml" />
+    <Content Include="Views\Coffees\Details.cshtml" />
+    <Content Include="Views\Coffees\Edit.cshtml" />
+    <Content Include="Views\Coffees\Index.cshtml" />
+    <Content Include="configs\AppSecretKeys.config" />
     <None Include="_Archive\_OldScripts\jquery.validate-vsdoc.js" />
     <None Include="_Archive\_OldScripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Web.config" />
@@ -942,7 +957,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="configs\" />
     <Folder Include="Content\images\logo\" />
     <Folder Include="Content\images\overlays\" />
     <Folder Include="Content\images\prettyPhoto\dark_rounded\" />

@@ -6,9 +6,12 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
 <table class="table">
     <tr>
         <th>
@@ -17,17 +20,27 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.StatusName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CoffeeStatusID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CoffeeStatusID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CoffeeStatusID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StatusName)
+            </td>
+            <td>
+                @if (User.IsInRole("Admin"))
+                {
+                <span>@Html.ActionLink("Edit", "Edit", new { id = item.CoffeeStatusID }) |</span>
+                }
+                
+                @Html.ActionLink("Details", "Details", new { id = item.CoffeeStatusID }) |
+
+                @if (User.IsInRole("Admin"))
+                {
+                <span>@Html.ActionLink("Delete", "Delete", new { id = item.CoffeeStatusID })</span>
+                }
+                
+            </td>
+        </tr>
+    }
 
 </table>

@@ -72,6 +72,7 @@
     <Compile Include="EmployeeTitle.cs">
       <DependentUpon>StoreFrontModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Metadata\StoreFrontMetaData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StoreFrontModel.Context.cs">
       <AutoGen>True</AutoGen>

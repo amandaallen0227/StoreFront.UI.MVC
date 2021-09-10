@@ -2,20 +2,46 @@
     ViewBag.Title = "Home";
 }
 
-<h2>@ViewBag.Title</h2>
+<section id="hero" class="carousel-content center centered">
+    <div class="container d-flex flex-column align-items-center" data-aos="zoom-in" data-aos-delay="100">
+        <img class="img-blog" src="~/Content/images/coffeeBags/_1tan-coffeecup.jpg" />
+        <h1>Anchor Coffee</h1>
+        <h2>Passionate about coffee and conversation</h2>
+        <a href="@Url.Action("Index","Coffees")" class="btn-about">Shop</a>
+    </div>
+</section>
+
+@*<div class="carousel-content center centered">
+      
+
+            <h2 class="boxed animation animated-item-1 fade-down">WE HELP YOU MAKE AN IMPACT</h2>
+            <p class="boxed animation animated-item-2 fade-up">Success. Without Fail.</p>
+            <br>
+            <a class="btn btn-md animation bounce-in" href="@Url.Action("Index","Coffees")">Shop</a>
+
+    </div>*@
+
+
+
+
 
 <div id="content-wrapper">
     <div id="content-wrapper">
         <section id="about-us" class="white">
+
+
+
             <div class="container">
-                <div class="gap"></div>
                 <div class="row">
                     <div class="col-md-12 fade-up">
+
+
+
                         <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non  mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris in erat justo. Nullam ac urna eu felis dapibus condimentum sit amet a augue. Sed non neque elit. Sed ut imperdiet nisi. Proin condimentum fermentum nunc. Etiam pharetra, erat sed fermentum feugiat, velit mauris egestas quam, ut aliquam massa nisl quis neque. Suspendisse in orci enim.</p>
                         <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non  mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris in erat justo. Nullam ac urna eu felis dapibus condimentum sit amet a augue. Sed non neque elit. Sed ut imperdiet nisi. Proin condimentum fermentum nunc. Etiam pharetra, erat sed fermentum feugiat, velit mauris egestas quam, ut aliquam massa nisl quis neque. Suspendisse in orci enim.</p>
                     </div>
                 </div>
-                <div class="gap"></div>
+
             </div>
         </section>
     </div>
@@ -121,3 +147,6 @@
     </section>
 </div>
 
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
