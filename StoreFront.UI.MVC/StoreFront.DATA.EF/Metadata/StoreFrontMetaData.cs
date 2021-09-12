@@ -27,7 +27,7 @@ namespace StoreFront.DATA.EF//.Metadata
 
         [Required(ErrorMessage = "*  Name is required")]
         [StringLength(50, ErrorMessage = "* Cannot exceed 50 characters")]
-        [Display(Name = "Coffe Name")]
+        [Display(Name = "Coffee Name")]
         public string CoffeeName { get; set; }
 
         [Display(Name = "Type")]
@@ -46,6 +46,14 @@ namespace StoreFront.DATA.EF//.Metadata
 
         [Display(Name = "Supplier")]
         public Nullable<int> SupplierID { get; set; }
+
+        public string Images { get; set; }
+
+        [StringLength(25, ErrorMessage = "* Cannot exceed 25 characters")]
+        public string Country { get; set; }
+
+        [StringLength(25, ErrorMessage = "* Cannot exceed 25 characters")]
+        public string Region { get; set; }
 
     }
 
@@ -90,8 +98,22 @@ namespace StoreFront.DATA.EF//.Metadata
         [StringLength(15, ErrorMessage = "* Cannot exceed 15 characters")]
         [Display(Name = "Supplier")]
         public string SupplierName { get; set; }
+
+        [StringLength(1000, ErrorMessage = "* Cannot exceed 1000 characters")]
+        [UIHint("MultilineText")]
+        public string Description { get; set; }
+
+        public string Images { get; set; }
+
+        [StringLength(25, ErrorMessage = "* Cannot exceed 25 characters")]
+        public string Region { get; set; }
+
+        [StringLength(25, ErrorMessage = "* Cannot exceed 25 characters")]
+        public string Country { get; set; }
+
+
     }
-    
+
     [MetadataType(typeof(SomethingMetadata))]
     public partial class Something 
     { 

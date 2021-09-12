@@ -16,6 +16,7 @@
         <AssociationConnector Association="StoreFrontModel.FK_Coffee_CoffeeSupplier1" ManuallyRouted="false" />
         <AssociationConnector Association="StoreFrontModel.FK_Coffee_CoffeeType1" ManuallyRouted="false" />
         <AssociationConnector Association="StoreFrontModel.FK_Employee_EmployeeTitle1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="StoreFrontModel.sysdiagram" Width="1.5" PointX="7.375" PointY="4.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

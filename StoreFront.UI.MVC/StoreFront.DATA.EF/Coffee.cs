@@ -21,6 +21,9 @@ namespace StoreFront.DATA.EF
         public string Description { get; set; }
         public int CoffeeStatusID { get; set; }
         public Nullable<int> SupplierID { get; set; }
+        public string Images { get; set; }
+        public string Country { get; set; }
+        public string Region { get; set; }
     
         public virtual CoffeeStatu CoffeeStatu { get; set; }
         public virtual CoffeeSupplier CoffeeSupplier { get; set; }

@@ -1,18 +1,80 @@
 ﻿@{
     ViewBag.Title = "Home";
 }
+<div class="center">
+    <img src="~/Content/images/coffeeBeans/gerson-cifuentes-W1VqcpcnSHk-unsplash.jpg" alt="img" style="width: 100%" id="home-image">
 
-<section id="hero" class="carousel-content center centered">
+</div>
+
+
+@*<img src="~/Content/images/coffeeBeans/clint-mckoy-h28p96ICizo-unsplash.jpg" />
+<img src="~/Content/images/coffeeBags/_1tan-coffeecup.jpg" />
+<img src="~/Content/images/coffeeBeans/taylor-hernandez-NK-N6coeI5Y-unsplash.jpg" />*@
+@*<script type="text/javascript">
+    jQuery(document).ready(function($){
+	'use strict';
+      	jQuery('body').backstretch([
+	        "~/Content/images/coffeeBeans/taylor-hernandez-NK-N6coeI5Y-unsplash.jpg",
+	        "~/Content/images/coffeeBags/_1tan-coffeecup.jpg",
+	        "~/Content/images/coffeeBeans/clint-mckoy-h28p96ICizo-unsplash.jpg"
+	    ], {duration: 5000, fade: 500, centeredY: true });
+
+		$("#mapwrapper").gMap({ controls: false,
+         	scrollwheel: false,
+         	markers: [{
+              	latitude:40.7566,
+				longitude: -73.9863,
+                  icon: {
+                      image: "~/Content/images/marker.png",
+              	iconsize: [44,44],
+          		iconanchor: [12,46],
+          		infowindowanchor: [12, 0] } }],
+          	icon: {
+              	image: "~/Content/images/marker.png",
+             	iconsize: [26, 46],
+              	iconanchor: [12, 46],
+              	infowindowanchor: [12, 0] },
+         	latitude:40.7566,
+         	longitude: -73.9863,
+          	zoom: 14 });
+    });
+  </script>
+
+<section style="height: 1171px;" id="main-slider" class="no-margin">
+    <div class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="item active">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="carousel-content center centered">
+                                <span class="home-icon pe-7s-gleam bounce-in"></span>
+                                <h2 class="boxed animation animated-item-1 fade-down">Anchor Coffee</h2>
+                                <p class="boxed animation animated-item-2 fade-up">Passionate about coffee and conversation</p>
+                                <br>
+                                <a class="btn btn-md animation bounce-in" href="@Url.Action("Index","Coffees")">Shop</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!--/.item-->
+        </div><!--/.carousel-inner-->
+    </div><!--/.carousel-->
+</section><!--/#main-slider-->*@
+
+
+
+@*<section id="hero" class="carousel-content center centered">
     <div class="container d-flex flex-column align-items-center" data-aos="zoom-in" data-aos-delay="100">
         <img class="img-blog" src="~/Content/images/coffeeBags/_1tan-coffeecup.jpg" />
         <h1>Anchor Coffee</h1>
         <h2>Passionate about coffee and conversation</h2>
         <a href="@Url.Action("Index","Coffees")" class="btn-about">Shop</a>
     </div>
-</section>
+</section>*@
 
 @*<div class="carousel-content center centered">
-      
+
 
             <h2 class="boxed animation animated-item-1 fade-down">WE HELP YOU MAKE AN IMPACT</h2>
             <p class="boxed animation animated-item-2 fade-up">Success. Without Fail.</p>
@@ -28,8 +90,6 @@
 <div id="content-wrapper">
     <div id="content-wrapper">
         <section id="about-us" class="white">
-
-
 
             <div class="container">
                 <div class="row">

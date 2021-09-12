@@ -171,7 +171,7 @@ blockquote {
     text-transform: uppercase;
     padding: 10px 15px;
     text-shadow: rgba(0, 0, 0, 0.4) 0 1px 1px;
-    z-index: 10px;
+    z-index: 10;
 }
 
 #main-slider .carousel .btn:hover {
@@ -1220,7 +1220,7 @@ ul.rss li::before {
 }
 
 #footer {
-    margin-top: 40px;
+    margin-top: -10px;
     background-color: #101010;
     padding-top: 30px;
     padding-bottom: 30px;

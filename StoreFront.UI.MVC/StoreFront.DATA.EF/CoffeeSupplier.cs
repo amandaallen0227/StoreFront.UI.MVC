@@ -22,6 +22,10 @@ namespace StoreFront.DATA.EF
     
         public int SupplierID { get; set; }
         public string SupplierName { get; set; }
+        public string Description { get; set; }
+        public string Images { get; set; }
+        public string Region { get; set; }
+        public string Country { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Coffee> Coffees { get; set; }

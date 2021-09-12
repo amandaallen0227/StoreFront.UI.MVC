@@ -146,7 +146,7 @@ jQuery(document).ready(function($){
 });
 
 /*-----------------------------------------------------------------------------------*/
-/*  SNOOOOOOOOTH SCROLL - SO SMOOTH
+/*  SMOOOOOOOOTH SCROLL - SO SMOOTH
 /*-----------------------------------------------------------------------------------*/
 $(function() {
 'use strict';
