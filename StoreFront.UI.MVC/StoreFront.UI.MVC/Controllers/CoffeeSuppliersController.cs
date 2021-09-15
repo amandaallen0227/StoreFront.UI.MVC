@@ -10,6 +10,7 @@ using StoreFront.DATA.EF;
 
 namespace StoreFront.UI.MVC.Controllers
 {
+    [AllowAnonymous]
     public class CoffeeSuppliersController : Controller
     {
         private StoreFrontEntities db = new StoreFrontEntities();
@@ -36,6 +37,7 @@ namespace StoreFront.UI.MVC.Controllers
         }
 
         // GET: CoffeeSuppliers/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -46,6 +48,7 @@ namespace StoreFront.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "SupplierID,SupplierName")] CoffeeSupplier coffeeSupplier)
         {
             if (ModelState.IsValid)
@@ -59,6 +62,7 @@ namespace StoreFront.UI.MVC.Controllers
         }
 
         // GET: CoffeeSuppliers/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,6 +82,7 @@ namespace StoreFront.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "SupplierID,SupplierName")] CoffeeSupplier coffeeSupplier)
         {
             if (ModelState.IsValid)
@@ -90,6 +95,7 @@ namespace StoreFront.UI.MVC.Controllers
         }
 
         // GET: CoffeeSuppliers/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -107,6 +113,7 @@ namespace StoreFront.UI.MVC.Controllers
         // POST: CoffeeSuppliers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             CoffeeSupplier coffeeSupplier = db.CoffeeSuppliers.Find(id);

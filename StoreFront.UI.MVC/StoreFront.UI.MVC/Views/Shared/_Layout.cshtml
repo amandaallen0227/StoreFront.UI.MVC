@@ -23,6 +23,11 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/Content/images/ico/images/ico/apple-touch-icon-72x72.png">
     <link rel="apple-touch-icon-precomposed" href="~/Content/images/ico/apple-touch-icon-57x57.png">
 
+    <!--jQuery DataTables-->
+    <link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+    <link href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css" rel="stylesheet" />
+
 </head><!--/head-->
 
 
@@ -45,15 +50,16 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="@Url.Action("Index","Coffees")">Shop</a></li>
+                    <li><a href="@Url.Action("Index","Home")">Home</a></li>
+                    <li><a href="@Url.Action("Index","Coffee")">Shop</a></li>
                     <li><a href="@Url.Action("Index","CoffeeSuppliers")">Our Partners</a></li>
                     @*<li class="dropdown active">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Join<i class="fas fa-angle-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="@Url.Action("Register","Account")">Register</a></li>
-                            <li><a href="@Url.Action("Login","Account")">Login</a></li>
-                        </ul>
-                    </li>*@
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Join<i class="fas fa-angle-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("Register","Account")">Register</a></li>
+                                <li><a href="@Url.Action("Login","Account")">Login</a></li>
+                            </ul>
+                        </li>*@
                     <li><a href="@Url.Action("Contact","Home")">Contact</a></li>
                     <li><a href="@Url.Action("About","Home")">About</a></li>
 
@@ -65,8 +71,8 @@
     </header><!--/header-->
 
 
-    <div id="content-wrapper">      
-            @RenderBody()       
+    <div id="content-wrapper">
+        @RenderBody()
     </div>
 
 
@@ -81,14 +87,15 @@
                     <div class="col-md-3 col-sm-6">
                         <h4>Company</h4>
                         <div>
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown"> <b>Admin Tools</b> </a>
+
                             @if (User.IsInRole("Admin"))
                             {
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown"> <b>Admin Tools</b> </a>
                                 <ul>
                                     <li><a href="@Url.Action("Index","Employees")">Employees</a></li>
                                     <li><a href="@Url.Action("Index","Customers")">Customers</a></li>
                                     <li><a href="@Url.Action("Index","CoffeeSuppliers")">Suppliers</a></li>
-                                    <li><a href="@Url.Action("Index","Coffees")">Coffees</a></li>
+                                    <li><a href="@Url.Action("Index","Coffee")">Coffees</a></li>
                                 </ul>
                             }
 
@@ -102,7 +109,7 @@
                                     <img class="widget-img" src="~/Content/images/coffeeBeans/taylor-hernandez-NK-N6coeI5Y-unsplash.jpg" alt="">
                                 </div>
                                 <div class="media-body">
-                                    <span class="media-heading"><a href="@Url.Action("Index","Coffees")">Shop Here</a></span>
+                                    <span class="media-heading"><a href="@Url.Action("Index","Coffee")">Shop Here</a></span>
                                     <small class="muted">Roasted to order, your journey starts here.</small>
                                 </div>
                             </div>
@@ -150,6 +157,12 @@
     <script src="~/Scripts/js/jquery.prettyPhoto.js"></script>
     <script src="~/Scripts/js/plugins.js"></script>
     <script src="~/Scripts/js/init.js"></script>
+
+    <!--JQuery DataTables-->
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>*@
+    <!-- Place scripts below jQuery (jQuery may already be referenced in your project) -->
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>
 
 
     @RenderSection("scripts", required: false)

@@ -6,7 +6,6 @@
 
 <h2>@ViewBag.Title</h2>
 
-
 @if (User.IsInRole("Admin"))
 {
     <p>
@@ -25,6 +24,15 @@
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Images)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Country)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Region)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.CoffeeStatu.StatusName)
         </th>
         <th>
@@ -40,13 +48,30 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.CoffeeName)
+                <a href="@Url.Action("Name", new { id = item.CoffeeID})" title="@item.CoffeeName">
+                    @Html.DisplayFor(modelItem => item.CoffeeName)
+                </a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Images)*@
+                <a href="@Url.Action("Details", new { id = item.CoffeeID})" title="@item.CoffeeName">
+                    <img src="~/Content/images/coffeemessenger/@item.Images" alt="@item.CoffeeName coffee image" style="max-height:100px; width: auto;" />
+
+                </a>
+
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Region)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CoffeeStatu.StatusName)
@@ -58,18 +83,9 @@
                 @Html.DisplayFor(modelItem => item.CoffeeType.Name)
             </td>
             <td>
-                @if (User.IsInRole("Admin"))
-                {
-                    <span>@Html.ActionLink("Edit", "Edit", new { id = item.CoffeeID }) |</span>
-                }
-
+                @Html.ActionLink("Edit", "Edit", new { id = item.CoffeeID }) |
                 @Html.ActionLink("Details", "Details", new { id = item.CoffeeID }) |
-
-                @if (User.IsInRole("Admin"))
-                {
-                    <span> @Html.ActionLink("Delete", "Delete", new { id = item.CoffeeID }) </span>
-                }
-
+                @Html.ActionLink("Delete", "Delete", new { id = item.CoffeeID })
             </td>
         </tr>
     }

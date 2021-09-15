@@ -2,26 +2,31 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using StoreFront.DATA.EF;
+using StoreFront.UI.MVC.Utilities;
 
 namespace StoreFront.UI.MVC.Controllers
 {
-    public class CoffeesController : Controller
+    [Authorize]
+    public class CoffeeController : Controller
     {
         private StoreFrontEntities db = new StoreFrontEntities();
 
-        // GET: Coffees
+        // GET: Coffee
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var coffees = db.Coffees.Include(c => c.CoffeeStatu).Include(c => c.CoffeeSupplier).Include(c => c.CoffeeType);
             return View(coffees.ToList());
         }
 
-        // GET: Coffees/Details/5
+        // GET: Coffee/Details/5 
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,7 +41,8 @@ namespace StoreFront.UI.MVC.Controllers
             return View(coffee);
         }
 
-        // GET: Coffees/Create
+        // GET: Coffee/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewBag.CoffeeStatusID = new SelectList(db.CoffeeStatus, "CoffeeStatusID", "StatusName");
@@ -45,15 +51,56 @@ namespace StoreFront.UI.MVC.Controllers
             return View();
         }
 
-        // POST: Coffees/Create
+        // POST: Coffee/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CoffeeID,CoffeeName,TypeID,Price,Description,CoffeeStatusID,SupplierID")] Coffee coffee)
+        [Authorize(Roles = "Admin")]
+        public ActionResult Create([Bind(Include = "CoffeeID,CoffeeName,TypeID,Price,Description,CoffeeStatusID,SupplierID,Images,Country,Region")] Coffee coffee, HttpPostedFileBase coffeeBag)
         {
             if (ModelState.IsValid)
             {
+                #region File Upload w/ Utility
+                string file = "NoImage.png";
+
+                if (coffeeBag != null)
+                {
+                    file = coffeeBag.FileName;
+
+                    string ext = file.Substring(file.LastIndexOf("."));
+
+                    string[] goodExts = {".jpeg",".jpg",".gif",".png" };
+
+                    if (goodExts.Contains(ext))
+                    {
+                        file = Guid.NewGuid() + ext;
+
+                        #region Resize Image
+
+                        //file path
+                        string savePath = Server.MapPath("~/Content/images/coffeemessenger");
+                        //image file
+                        Image convertedImage = Image.FromStream(coffeeBag.InputStream);
+                        //max img size
+                        int maxImageSize = 500;
+
+                        //max thumb size
+                        int maxThumbSize = 100;
+
+                        //call the imageutlity to do work
+                        ImageUtility.ResizeImage(savePath, file, convertedImage, maxImageSize, maxThumbSize);
+                        #endregion
+                    }
+                    else
+                    {
+                        file = "NoImage.png";
+                    }
+
+                    coffee.Images = file;
+
+                }
+                #endregion
                 db.Coffees.Add(coffee);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -65,7 +112,8 @@ namespace StoreFront.UI.MVC.Controllers
             return View(coffee);
         }
 
-        // GET: Coffees/Edit/5
+        // GET: Coffee/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -83,15 +131,61 @@ namespace StoreFront.UI.MVC.Controllers
             return View(coffee);
         }
 
-        // POST: Coffees/Edit/5
+        // POST: Coffee/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CoffeeID,CoffeeName,TypeID,Price,Description,CoffeeStatusID,SupplierID")] Coffee coffee)
+        [Authorize(Roles = "Admin")]
+        public ActionResult Edit([Bind(Include = "CoffeeID,CoffeeName,TypeID,Price,Description,CoffeeStatusID,SupplierID,Images,Country,Region")] Coffee coffee, HttpPostedFileBase coffeeBag)
         {
             if (ModelState.IsValid)
             {
+                #region File Upload w/ Utility               
+
+                string file = "";
+
+                if (coffeeBag != null)
+                {
+                    
+                    file = coffeeBag.FileName;                  
+
+                    string ext = file.Substring(file.LastIndexOf("."));
+
+                    string[] goodExts = { ".jpg", ".jpeg", ".png", ".gif" };
+
+                    if (goodExts.Contains(ext))
+                    {
+
+                        
+                        file = Guid.NewGuid() + ext;
+
+                        #region Resize Image
+                        
+                        string savePath = Server.MapPath("~/Content/imgstore/books/");
+
+                        Image convertedImage = Image.FromStream(coffeeBag.InputStream);
+
+                        int maxImageSize = 500;
+
+                        int maxThumbSize = 100;
+
+                        ImageUtility.ResizeImage(savePath, file, convertedImage, maxImageSize, maxThumbSize);
+                        #endregion
+
+                        #region Delete the old image
+                        if (coffee.Images != null && coffee.Images != "NoImage.png")
+                        {
+                            string path = Server.MapPath("~/Content/imgstore/books/");
+                            ImageUtility.Delete(path, coffee.Images);
+                        }
+                        #endregion
+
+                        coffee.Images = file;
+
+                    }
+                }
+                #endregion
                 db.Entry(coffee).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -102,7 +196,8 @@ namespace StoreFront.UI.MVC.Controllers
             return View(coffee);
         }
 
-        // GET: Coffees/Delete/5
+        // GET: Coffee/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -117,9 +212,10 @@ namespace StoreFront.UI.MVC.Controllers
             return View(coffee);
         }
 
-        // POST: Coffees/Delete/5
+        // POST: Coffee/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Coffee coffee = db.Coffees.Find(id);

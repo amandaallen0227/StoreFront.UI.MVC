@@ -5,6 +5,7 @@ using System.Web.Mvc;
 
 namespace StoreFront.UI.MVC.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         [HttpGet]

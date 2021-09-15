@@ -168,7 +168,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CoffeesController.cs" />
+    <Compile Include="Controllers\CoffeeController.cs" />
     <Compile Include="Controllers\CoffeeStatusController.cs" />
     <Compile Include="Controllers\CoffeeSuppliersController.cs" />
     <Compile Include="Controllers\CoffeeTypesController.cs" />
@@ -189,6 +189,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utilities\ImageUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore.xml" />
@@ -865,12 +866,12 @@
     <Content Include="Views\EmployeeTitles\Details.cshtml" />
     <Content Include="Views\EmployeeTitles\Edit.cshtml" />
     <Content Include="Views\EmployeeTitles\Index.cshtml" />
-    <Content Include="Views\Coffees\Create.cshtml" />
-    <Content Include="Views\Coffees\Delete.cshtml" />
-    <Content Include="Views\Coffees\Details.cshtml" />
-    <Content Include="Views\Coffees\Edit.cshtml" />
-    <Content Include="Views\Coffees\Index.cshtml" />
     <Content Include="configs\AppSecretKeys.config" />
+    <Content Include="Views\Coffee\Create.cshtml" />
+    <Content Include="Views\Coffee\Delete.cshtml" />
+    <Content Include="Views\Coffee\Details.cshtml" />
+    <Content Include="Views\Coffee\Edit.cshtml" />
+    <Content Include="Views\Coffee\Index.cshtml" />
     <None Include="_Archive\_OldScripts\jquery.validate-vsdoc.js" />
     <None Include="_Archive\_OldScripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Web.config" />

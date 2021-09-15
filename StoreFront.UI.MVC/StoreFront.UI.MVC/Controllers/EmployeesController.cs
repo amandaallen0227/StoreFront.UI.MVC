@@ -10,6 +10,7 @@ using StoreFront.DATA.EF;
 
 namespace StoreFront.UI.MVC.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class EmployeesController : Controller
     {
         private StoreFrontEntities db = new StoreFrontEntities();
