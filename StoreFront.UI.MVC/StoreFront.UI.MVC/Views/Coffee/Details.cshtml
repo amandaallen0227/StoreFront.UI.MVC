@@ -4,87 +4,111 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div id="content-wrapper">
+    <div id="content-wrapper">
+        <section id="about-us" class="white">
+            <div class="container">
+                <h2>@ViewBag.Title</h2>
 
-<div>
-    <h4>Coffee</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CoffeeName)
-        </dt>
+                <div>
+                    <hr />
 
-        <dd>
-            @Html.DisplayFor(model => model.CoffeeName)
-        </dd>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.CoffeeName)
+                        </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.CoffeeName)
+                        </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Price)
+                        </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Price)
+                        </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Images)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Description)
+                        </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Images)
-        </dd>
+                        @*<dt>
+                                @Html.DisplayNameFor(model => model.Images)
+                            </dt>*@
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Country)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Images)
+                        </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Country)
-        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Country)
+                        </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Region)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Country)
+                        </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Region)
-        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Region)
+                        </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CoffeeStatu.StatusName)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Region)
+                        </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CoffeeStatu.StatusName)
-        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.CoffeeStatu.StatusName)
+                        </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CoffeeSupplier.SupplierName)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.CoffeeStatu.StatusName)
+                        </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CoffeeSupplier.SupplierName)
-        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.CoffeeSupplier.SupplierName)
+                        </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CoffeeType.Name)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.CoffeeSupplier.SupplierName)
+                        </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CoffeeType.Name)
-        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.CoffeeType.Name)
+                        </dt>
 
-    </dl>
+                        <dd>
+                            @Html.DisplayFor(model => model.CoffeeType.Name)
+                        </dd>
+
+                    </dl>
+
+                    <div class="col-md-6">
+                        <img src="~/Content/images/coffeemessenger/@Model.Images" alt="Coffee Bag" style="max-height: 100px; width: auto;" title="@Model.CoffeeName" />
+                    </div>
+
+
+                    @using (Html.BeginForm("AddToCart", "ShoppingCart", new { coffeeId = Model.CoffeeID }, FormMethod.Post, new { @class = "text-centered" }))
+                    {
+                        <span class-label>Quantity: </span>
+                        @Html.TextBox("Qty", 1, new { @class = "form-control", style = "max-width: 50px; display: inline;" })
+                        <input type="submit" value="Add To Cart" class="center-btn btn-primary" />
+                    }
+
+
+                </div>
+
+
+                <p>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.CoffeeID }) |
+                    @Html.ActionLink("Back to List", "Index")
+                </p>
+            </div>
+        </section>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CoffeeID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

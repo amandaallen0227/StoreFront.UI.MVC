@@ -16,7 +16,9 @@ namespace StoreFront.UI.MVC.Controllers
     public class CoffeeController : Controller
     {
         private StoreFrontEntities db = new StoreFrontEntities();
+        #region Scaffolded, Non-Ajax CRUD Functionality
 
+        
         // GET: Coffee
         [AllowAnonymous]
         public ActionResult Index()
@@ -55,8 +57,7 @@ namespace StoreFront.UI.MVC.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]    
         public ActionResult Create([Bind(Include = "CoffeeID,CoffeeName,TypeID,Price,Description,CoffeeStatusID,SupplierID,Images,Country,Region")] Coffee coffee, HttpPostedFileBase coffeeBag)
         {
             if (ModelState.IsValid)
@@ -135,8 +136,7 @@ namespace StoreFront.UI.MVC.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]      
         public ActionResult Edit([Bind(Include = "CoffeeID,CoffeeName,TypeID,Price,Description,CoffeeStatusID,SupplierID,Images,Country,Region")] Coffee coffee, HttpPostedFileBase coffeeBag)
         {
             if (ModelState.IsValid)
@@ -214,8 +214,7 @@ namespace StoreFront.UI.MVC.Controllers
 
         // POST: Coffee/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]    
         public ActionResult DeleteConfirmed(int id)
         {
             Coffee coffee = db.Coffees.Find(id);
@@ -223,6 +222,9 @@ namespace StoreFront.UI.MVC.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        #endregion
+
+        //Next do step 2 - Don't add this until you have finished all your Views
 
         protected override void Dispose(bool disposing)
         {

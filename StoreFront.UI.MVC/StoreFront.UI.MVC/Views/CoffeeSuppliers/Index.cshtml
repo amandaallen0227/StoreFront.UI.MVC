@@ -7,7 +7,7 @@
 }
 
 <div class="tile-header">
-    <img src="~/Content/images/coffeeBeans/taylor-hernandez-NK-N6coeI5Y-unsplash.jpg" alt="">
+    <img src="~/Content/images/coffeeBags/Farm.jpg" alt="hand-in-hand" id="hand-in-hand-coffee" style="width: 100%">
 </div>
 
     <div id="content-wrapper" style="padding: 9%;">
@@ -20,11 +20,13 @@
                     </p>
                 }
                 <table class="table">
-                    <tr>
+                    <tr>                      
                         <th>
-                            @Html.DisplayNameFor(model => model.SupplierName)
+                            @Html.DisplayNameFor(model => model.SupplierName) 
                         </th>
-                        <th></th>
+                        <th>
+                        
+                        </th>
                     </tr>
 
                     @foreach (var item in Model)
@@ -39,11 +41,11 @@
                                     <span>@Html.ActionLink("Edit", "Edit", new { id = item.SupplierID }) |</span>
                                 }
 
-                                @Html.ActionLink("Details", "Details", new { id = item.SupplierID }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.SupplierID })
 
                                 @if (User.IsInRole("Admin"))
                                 {
-                                    <span>@Html.ActionLink("Delete", "Delete", new { id = item.SupplierID })</span>
+                                    <span> | @Html.ActionLink("Delete", "Delete", new { id = item.SupplierID })</span>
                                 }
 
                             </td>

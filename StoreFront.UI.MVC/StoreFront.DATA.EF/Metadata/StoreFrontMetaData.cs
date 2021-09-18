@@ -96,7 +96,7 @@ namespace StoreFront.DATA.EF//.Metadata
 
         [Required(ErrorMessage = "* Supplier is required")]
         [StringLength(15, ErrorMessage = "* Cannot exceed 15 characters")]
-        [Display(Name = "Supplier")]
+        [Display(Name = "Partners")]
         public string SupplierName { get; set; }
 
         [StringLength(1000, ErrorMessage = "* Cannot exceed 1000 characters")]

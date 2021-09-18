@@ -4,16 +4,21 @@
     ViewBag.Title = "Contact";
 }
 
+
+<div class="center">
+    <img src="~/Content/images/coffeeBags/Contact.jpg" alt="img" style="width: 100%" id="home-image">
+
+</div>
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-
+     
         <div id="content-wrapper">
-            <div id="mapwrapper">
-                <h3>Drop Us A Message!</h3>
-                <div id="map"></div>
+            <div id="mapwrapper">      
+             
             </div>
             <section id="contact" class="white">
                 <div class="container">
@@ -70,9 +75,7 @@
         </div>
     </div>
 }
-@*<div>
-    @Html.ActionLink("Home", "Index")
-</div>*@
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

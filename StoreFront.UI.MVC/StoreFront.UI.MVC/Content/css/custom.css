@@ -50,7 +50,34 @@
     transform: translate(-50%, -50%);
 }
 
-#horizontal-coffeebag-img {
-    margin: -140px 0 1px 85px;
+.coffee {
+    margin: 0px 0 1px 85px;
     border-radius: 25px;
+}
+
+img .tile-header {
+    border: 0;
+    width: 100%;
+}
+
+.index-img {
+    float: left;
+    margin: -7% 4%;
+    border-radius: 20%;
+}
+
+
+img #horizontal-coffeebag-img {
+    vertical-align: middle;
+    margin: 0px 0 1px 85px;
+    border-radius: 25px;
+}
+
+p {
+    font-family: monospace;
+}
+
+#content-wrapper section {
+    padding-top: 60px;
+    padding-bottom: 190px;
 }

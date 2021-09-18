@@ -1222,8 +1222,7 @@ ul.rss li::before {
 #footer {
     margin-top: -10px;
     background-color: #101010;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 10px;
     color: #eee;
     border-top: 1px solid #333;
 }
@@ -1504,7 +1503,7 @@ img.author-box-image {
 
 #content-wrapper section {
   padding-top: 60px;
-  padding-bottom: 60px;
+  padding-bottom: 190px;
 }
 
 /*-----------------------------------------------------------------------------------*/
@@ -1515,7 +1514,7 @@ img.author-box-image {
 
 #footer-wrapper {
     z-index: 1;
-    padding-top: 60px;
+    padding-top: 10px;
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -2121,8 +2120,8 @@ img.author-box-image {
     font-size: 100%;
     text-transform: uppercase;
     letter-spacing: 2px;
-    margin: 0% -138%;
-    margin-top: 33px;
+    margin: 0% -100%;
+    margin-top: -9px;
 }
 
 .navbar-inverse .navbar-nav {

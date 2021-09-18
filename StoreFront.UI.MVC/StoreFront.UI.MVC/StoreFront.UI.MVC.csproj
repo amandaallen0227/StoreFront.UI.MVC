@@ -175,15 +175,18 @@
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\EmployeeTitlesController.cs" />
+    <Compile Include="Controllers\FiltersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
+    <Compile Include="Models\CartItemViewModel.cs" />
     <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -206,9 +209,13 @@
     <Content Include="Content\images\bg\bg4.jpg" />
     <Content Include="Content\images\bg\bg5.jpg" />
     <Content Include="Content\images\bg\bg6.jpg" />
+    <Content Include="Content\images\coffeeBags\About.jpg" />
     <Content Include="Content\images\coffeeBags\battlecreek-coffee-roasters-HvzR2yXtii4-unsplash.jpg" />
     <Content Include="Content\images\coffeeBags\battlecreek-coffee-roasters-_1wDmr4dtuk-unsplash.jpg" />
     <Content Include="Content\images\coffeeBags\blake-wisz-qrTdOMc5EqE-unsplash.jpg" />
+    <Content Include="Content\images\coffeeBags\coffeefruit.png" />
+    <Content Include="Content\images\coffeeBags\Contact.jpg" />
+    <Content Include="Content\images\coffeeBags\Farm.jpg" />
     <Content Include="Content\images\coffeeBags\jon-tyson-fIVD9x3JvDo-unsplash.jpg" />
     <Content Include="Content\images\coffeeBags\jon-tyson-KRedbshBxEk-unsplash.jpg" />
     <Content Include="Content\images\coffeeBags\lex-sirikiat-QouiCn7u6kw-unsplash.jpg" />
@@ -216,12 +223,18 @@
     <Content Include="Content\images\coffeeBags\maryna-vasylieva-vasilievame-2xDIrOkhEb0-unsplash.jpg" />
     <Content Include="Content\images\coffeeBags\mike-kenneally-TD4DBagg2wE-unsplash.jpg" />
     <Content Include="Content\images\coffeeBags\nathan-dumlao-WAe-QkpE6as-unsplash.jpg" />
+    <Content Include="Content\images\coffeeBags\Register.jpg" />
     <Content Include="Content\images\coffeeBags\ryan-spaulding-_uncFvtOC-4-unsplash.jpg" />
     <Content Include="Content\images\coffeeBags\sara-dubler-2u7KhYAl24A-unsplash.jpg" />
+    <Content Include="Content\images\coffeeBags\The Best Coffee Always Starts Together.jpg" />
+    <Content Include="Content\images\coffeeBags\WelcomeBack.jpg" />
     <Content Include="Content\images\coffeeBags\yanapi-senaud-6HR8vpjYUHo-unsplash.jpg" />
     <Content Include="Content\images\coffeeBags\_1tan-coffeecup.jpg" />
     <Content Include="Content\images\coffeeBeans\clint-mckoy-h28p96ICizo-unsplash.jpg" />
+    <Content Include="Content\images\coffeeBeans\Explore Our Offerings %281%29.jpg" />
+    <Content Include="Content\images\coffeeBeans\exploreourofferings.png" />
     <Content Include="Content\images\coffeeBeans\gerson-cifuentes-W1VqcpcnSHk-unsplash.jpg" />
+    <Content Include="Content\images\coffeeBeans\hand-in-hand-edit.png" />
     <Content Include="Content\images\coffeeBeans\ideadad-SoMHwovUDqA-unsplash.jpg" />
     <Content Include="Content\images\coffeeBeans\jean-louis-aubert-HOYuT3zFXfA-unsplash.jpg" />
     <Content Include="Content\images\coffeeBeans\jocelyn-morales-JJeb7OHQ7a8-unsplash.jpg" />
@@ -231,6 +244,7 @@
     <Content Include="Content\images\coffeeBeans\rodrigo-flores-T5qjs-63kqQ-unsplash.jpg" />
     <Content Include="Content\images\coffeeBeans\sigmund-ZiwuUOR_H0U-unsplash.jpg" />
     <Content Include="Content\images\coffeeBeans\taylor-hernandez-NK-N6coeI5Y-unsplash.jpg" />
+    <Content Include="Content\images\coffeeBeans\yellowcoffee.jpg" />
     <Content Include="Content\images\coffeemessenger\blend-silhouette-blend.jpg" />
     <Content Include="Content\images\coffeemessenger\colombia-tolima-decaf.jpg" />
     <Content Include="Content\images\coffeemessenger\el-salvador-captail-del-mundo-honey.jpg" />
@@ -872,6 +886,8 @@
     <Content Include="Views\Coffee\Details.cshtml" />
     <Content Include="Views\Coffee\Edit.cshtml" />
     <Content Include="Views\Coffee\Index.cshtml" />
+    <Content Include="Views\ShoppingCart\Index.cshtml" />
+    <Content Include="Views\Filters\CoffeeQS.cshtml" />
     <None Include="_Archive\_OldScripts\jquery.validate-vsdoc.js" />
     <None Include="_Archive\_OldScripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Web.config" />

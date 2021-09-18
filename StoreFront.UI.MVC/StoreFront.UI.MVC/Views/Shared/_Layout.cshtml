@@ -15,6 +15,9 @@
     @* Added *@
     <script src="https://kit.fontawesome.com/1f94d5f4f0.js" crossorigin="anonymous"></script>
 
+    <!--Custom.css-->
+    <link href="~/Content/css/custom.css" rel="stylesheet" />
+
 
     <script src="~/Scripts/js/jquery.js"></script>
     <link rel="shortcut icon" href="~/Content/images/ico/favicon.ico">
@@ -28,9 +31,11 @@
 
     <link href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css" rel="stylesheet" />
 
+    @* AJAX Step 1 - Add <link> for jQuery UI in the <head> and add <scripts> for jQueryUI and jQuery AJAX at the bottom of the layout *@
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css">
+
+
 </head><!--/head-->
-
-
 @*<div id="search-wrapper">
         <div class="container">
             <input id="search-box" placeholder="Search">
@@ -46,25 +51,45 @@
                     <span class="sr-only">Toggle navigation</span>
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="@Url.Action("Index","Home")"><h1><span class="pe-7s-gleam bounce-in"></span>ANCHOR</h1></a>
+                <a class="navbar-brand" href="@Url.Action("CoffeeQS","Filters")"><h1><span class="pe-7s-gleam bounce-in"></span>ANCHOR</h1></a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="@Url.Action("Index","Home")">Home</a></li>
-                    <li><a href="@Url.Action("Index","Coffee")">Shop</a></li>
+                    <li><a href="@Url.Action("CoffeeQS","Filters")">Shop</a></li>
                     <li><a href="@Url.Action("Index","CoffeeSuppliers")">Our Partners</a></li>
-                    @*<li class="dropdown active">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Join<i class="fas fa-angle-down"></i></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="@Url.Action("Register","Account")">Register</a></li>
-                                <li><a href="@Url.Action("Login","Account")">Login</a></li>
-                            </ul>
-                        </li>*@
                     <li><a href="@Url.Action("Contact","Home")">Contact</a></li>
                     <li><a href="@Url.Action("About","Home")">About</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account</a>
+                        <div class="dropdown-menu account-dropdown">
+                            @Html.Partial("_LoginPartial")
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        @{
+                            Dictionary<int, StoreFront.UI.MVC.Models.CartItemViewModel> shoppingCart =
+                                (Dictionary<int, StoreFront.UI.MVC.Models.CartItemViewModel>)Session["cart"];
 
-                    @Html.Partial("_LoginPartial")
-                    <li><span class="search-trigger"><i class="fas fa-search"></i></span></li>
+                            int nbrItems = 0;
+
+                            if (shoppingCart != null)
+                            {
+                                foreach (var item in shoppingCart)
+                                {
+                                    nbrItems += item.Value.Qty;
+                                }
+
+
+                            }
+
+
+                        }
+                        <a href="@Url.Action("Index", "ShoppingCart")">Cart<i class="fa fa-shopping-cart"></i><span class="cart-text">@nbrItems</span></a>
+
+                    </li>
+
+                    @*<li><span class="search-trigger"><i class="fas fa-search"></i></span></li>*@
                 </ul>
             </div>
         </div>
@@ -85,31 +110,14 @@
                         <p> Our approach to sourcing is a part of the core philosophy of our company. Quality driven farmers cultivate their coffee crop to be its best. It is their work that builds the foundation for what makes great coffee. </p>
                     </div><!--/.col-md-3-->
                     <div class="col-md-3 col-sm-6">
-                        <h4>Company</h4>
-                        <div>
 
-                            @if (User.IsInRole("Admin"))
-                            {
-                                <a href="" class="dropdown-toggle" data-toggle="dropdown"> <b>Admin Tools</b> </a>
-                                <ul>
-                                    <li><a href="@Url.Action("Index","Employees")">Employees</a></li>
-                                    <li><a href="@Url.Action("Index","Customers")">Customers</a></li>
-                                    <li><a href="@Url.Action("Index","CoffeeSuppliers")">Suppliers</a></li>
-                                    <li><a href="@Url.Action("Index","Coffee")">Coffees</a></li>
-                                </ul>
-                            }
-
-                        </div>
-                    </div><!--/.col-md-3-->
-                    <div class="col-md-3 col-sm-6">
-                        <h4>Come and See</h4>
                         <div>
                             <div class="media">
                                 <div class="pull-left">
-                                    <img class="widget-img" src="~/Content/images/coffeeBeans/taylor-hernandez-NK-N6coeI5Y-unsplash.jpg" alt="">
+                                    <img class="widget-img" src="~/Content/images/coffeeBeans/nafinia-putra-Kwdp-0pok-I-unsplash.jpg" alt="">
                                 </div>
                                 <div class="media-body">
-                                    <span class="media-heading"><a href="@Url.Action("Index","Coffee")">Shop Here</a></span>
+                                    <span class="media-heading"><a href="@Url.Action("CoffeeQS","Filters")">Shop Here</a></span>
                                     <small class="muted">Roasted to order, your journey starts here.</small>
                                 </div>
                             </div>
@@ -125,18 +133,29 @@
                         </div>
                     </div><!--/.col-md-3-->
                     <div class="col-md-3 col-sm-6">
-                        <h4>Drop In</h4>
                         <address>
                             <strong>Anchor Coffee</strong><br>
-                            4040 Southwest Boulevard Kansas City,<br>
-                            Missouri, 86370<br>
-                            <abbr title="Phone"><i class="fa fa-phone"></i></abbr>  +1-816-849-1286
+                            4040 Southwest Boulevard Kansas City, Missouri, 86370<br>
+                            @*<abbr title="Phone"><i class="fa fa-phone"></i></abbr>  +1-816-849-1286*@
                         </address>
                     </div> <!--/.col-md-3-->
                 </div>
             </div>
         </section><!--/#bottom-->
-
+        <div class="col-md-3 col-sm-6">
+            <div>
+                @if (User.IsInRole("Admin"))
+                {
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown"> <b>Admin Tools</b> </a>
+                    <ul>
+                        <li><a href="@Url.Action("Index","Employees")">Employees</a></li>
+                        <li><a href="@Url.Action("Index","Customers")">Customers</a></li>
+                        <li><a href="@Url.Action("Index","CoffeeSuppliers")">Suppliers</a></li>
+                        <li><a href="@Url.Action("CoffeeQS","Filters")">Coffees</a></li>
+                    </ul>
+                }
+            </div>
+        </div><!--/.col-md-3-->
 
         <footer id="footer" class="">
             <div class="container">
@@ -163,6 +182,12 @@
     <!-- Place scripts below jQuery (jQuery may already be referenced in your project) -->
     <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>
+
+    <!--ADDEDjQuery UI CDN-->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- ADDED jQuery Ajax CDN-->
+    <script src="https://cdn.jsdelivr.net/jquery.ajax.unobtrusive/3.2.4/jquery.unobtrusive-ajax.min.js"></script>
 
 
     @RenderSection("scripts", required: false)

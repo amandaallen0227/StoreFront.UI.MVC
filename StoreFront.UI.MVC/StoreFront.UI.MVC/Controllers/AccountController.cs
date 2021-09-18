@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using StoreFront.DATA.EF;
 
 namespace StoreFront.UI.MVC.Controllers
 {
@@ -154,14 +155,35 @@ namespace StoreFront.UI.MVC.Controllers
                 if (result.Succeeded)
                 {
                     #region don't need for Identity
-                    var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
-                    ViewBag.Link = callbackUrl;
-                    return View("DisplayEmail");
-                    #endregion                   
-                        //UserManager.AddToRole(user.Id, "Customer");
-                        //return RedirectToAction("Login");    
+                    //var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    //await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
+                    //ViewBag.Link = callbackUrl;
+                    //return View("DisplayEmail");
+                    #endregion
+
+                    #region Create UserDetails Record upon Registration
+                    //Instantiate DB object so we can save the record to the db
+                    StoreFrontEntities db = new StoreFrontEntities();
+
+                    //Create the UserDetails object
+                    UserDetail ud = new UserDetail();
+                    ud.UserID = user.Id;
+                    ud.FirstName = model.FirstName;
+                    ud.LastName = model.LastName;
+                    ud.FavoriteColor = model.FavoriteColor;
+
+                    db.UserDetails.Add(ud);
+                    db.SaveChanges();
+
+                    return View("Login");
+
+                    #endregion
+
+
+
+                    //UserManager.AddToRole(user.Id, "Customer");
+                    //return RedirectToAction("Login");    
                 }
                 AddErrors(result);
             }

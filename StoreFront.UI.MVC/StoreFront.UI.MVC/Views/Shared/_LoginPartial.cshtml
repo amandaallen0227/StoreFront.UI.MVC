@@ -1,15 +1,47 @@
 ﻿@using Microsoft.AspNet.Identity
+@using StoreFront.DATA.EF
+@{ 
+    int location = User.Identity.GetUserName().IndexOf("@");
+
+    StoreFrontEntities db = new StoreFrontEntities();
+
+    string userId = User.Identity.GetUserId();
+
+    UserDetail currentUser = db.UserDetails.Find(userId);
+
+    string userFN = "Guest"; //default to something in case the user is not logged in
+    string favColor = "#cccccc"; 
+
+    if (currentUser != null)
+    {
+        userFN = currentUser.FirstName;
+        favColor = currentUser.FavoriteColor;
+    }
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
 @if (Request.IsAuthenticated) {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" })) {
         @Html.AntiForgeryToken()
 
         <ul class="nav navbar-nav navbar-right">
             <li>
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                @Html.ActionLink("Hello " + userFN + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", style= $"color: {favColor}; text-shadow: 1px 1px #000;" })
             </li>
             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
         </ul>
-    }
+           }
 }
 else {
     <ul class="nav navbar-nav navbar-right">

@@ -50,6 +50,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AspNetRole.cs">
+      <DependentUpon>StoreFrontModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>StoreFrontModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaim.cs">
+      <DependentUpon>StoreFrontModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLogin.cs">
+      <DependentUpon>StoreFrontModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Class1.cs" />
     <Compile Include="Coffee.cs">
       <DependentUpon>StoreFrontModel.tt</DependentUpon>
@@ -64,6 +76,9 @@
       <DependentUpon>StoreFrontModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Customer.cs">
+      <DependentUpon>StoreFrontModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C__MigrationHistory.cs">
       <DependentUpon>StoreFrontModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Employee.cs">
@@ -96,6 +111,9 @@
       <DependentUpon>StoreFrontModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="sysdiagram.cs">
+      <DependentUpon>StoreFrontModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserDetail.cs">
       <DependentUpon>StoreFrontModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
