@@ -17,11 +17,21 @@
 
             @if (User.IsInRole("Admin"))
             {
-                <p>
-                    @Html.ActionLink("Create New", "Create")
+                <p class="row">
+                    <button id="toggleCoffeeCreate" class-btn btn-primary text-right pull-left>Add New</button>
                 </p>
+
+                <div id="CoffeeCreate">
+                    @Html.Partial("CoffeeCreate", new StoreFront.DATA.EF.Coffee())
+                </div>
+
+
+                @*<p>
+                    @Html.ActionLink("Create New", "Create")
+                </p>*@
             }
-            <table class="table">
+            @* Step 4 *@
+            <table class="table" id="CoffeeTable">
                 <tr>
                     <th>
                         @Html.DisplayNameFor(model => model.CoffeeName)
@@ -42,15 +52,18 @@
 
                     <th></th>
                 </tr>
-
+                @* step 5 *@
                 @foreach (var item in Model)
                 {
-                    <tr>
+
+                    <tr id="Coffee-@item.CoffeeID">
                         <td>
                             <a href="@Url.Action("Name", new { id = item.CoffeeID})" title="@item.CoffeeName">
                                 @Html.DisplayFor(modelItem => item.CoffeeName) | <br />
                             </a>
-                            @Html.ActionLink("Details", "Details", new { id = item.CoffeeID })
+                            <!--Step 10-->
+                            @*@Html.ActionLink("Details", "Details", new { id = item.CoffeeID })*@
+                            <a href="" class="DetailsLink" id="@item.CoffeeID">Details</a>
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Price)
@@ -71,11 +84,25 @@
 
                         @if (User.IsInRole("Admin"))
                         {
-                            <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.CoffeeID }) |
+                        <td>
+                            @*@Html.ActionLink("Edit", "Edit", new { id = item.CoffeeID })*@ |
+                            @* Step 20 - replace orginial edit btn w/ AJAX edit <a> tag *@
+                            <a href="" class="EditLink" id="@item.CoffeeID">Edit</a>
 
-                                @Html.ActionLink("Delete", "Delete", new { id = item.CoffeeID })
-                            </td>
+                            @* Step 3  *@
+                            @*@Html.ActionLink("Delete", "Delete", new { id = item.CoffeeID })*@
+                            @Ajax.ActionLink("Delete", "AjaxDelete", "Coffee",
+                           new  { id = item.CoffeeID},
+                           new AjaxOptions
+                           {
+                               HttpMethod = "POST",
+                               Confirm = "Are you sure you want to delete this coffee?",
+                               OnSuccess = "deleteConfirmed",
+                               OnFailure = "deleteFailed"
+                              
+                           })
+                        </td>
+
                         }
                     </tr>
                 }
@@ -84,3 +111,174 @@
         </div>
     </div>
 </div>
+
+@* Step 11 - placeholders for content to be loaded in *@
+<div id="CoffeeDetails"></div>
+
+@* Step 6 - add section for scripts *@
+@section scripts{
+    
+    <script>
+        //Step 7
+        //DELETE CONFIRMATION//
+        function deleteConfirmed(response, status, data) {
+
+            var rowId = "#Coffee" + response.id; // removes the row from the table in the browser
+            $("#CoffeesTable").find(rowId).remove(); //locates the <tr> tag within the table
+
+            $("#MessageContent").html("<div class= 'alert alert-success'>" + response.message + "</div>");
+        }
+
+        //DELETE FAILED//
+        function deleteFailed(response, status, data) {
+            $("#MessageContent").html("<div class= 'alert alert-danger'>Delete unsuccessful. Is the coffee refereneced by a supplier? If so, change the coffee supplier, or delete that coffee first. </div>");
+        }
+
+        //Step 12
+        //DETAILS DIALOG BOX//
+        $('a.DetailsLink').click(function (e) {
+            e.preventDefault(); //prevents default behavior (for an <a> tag the default behavor is to open a new page and we want our details to load on the same page)
+
+            $("#PublisherDetails").data('cId', $(this).attr('id'))
+                .dialog({
+                    //dialog box options
+                    width: 400,
+                    height: 200,
+                    open: function () {
+                        var pubId = $(this).data('pId');
+                        $(this).load("Coffee/CofeeDetails/" + pubId);
+                    },
+                    title: "Coffee Details",
+                    modal: true,
+                    resizable: false
+
+
+                });
+
+
+        });
+
+        //Step 16 - show create form
+        //CREATE//
+        $("#CoffeeCreate").hide();
+        $("#toggleCoffeeCreate").click(function () {
+            $("#CoffeeCreate").toggle();
+
+        });
+
+
+        //Step 17 - handling form submission
+        $("#CoffeeCreateForm").submit(function (e) {
+            var formData = $(this).serializeArray(); //converts form into JSON format
+            e.preventDefault(); //prevents default functionality -which is to submit to the controller
+
+            $.ajax({
+                url: "/Coffee/AjaxCreate",
+                type: "POST",
+                data: formData,
+                dataType: "json",
+                error: function (e) {
+                    $("#MessageContent").html("<div class= 'alert alert-danger'>Error. Please try again </div>")
+                },
+                success: function (cof) {
+                    $("#MessageContent").html("<div class='alert alert-success>Publisher added!</div>");
+                    $("#CoffeeCreateForm")[0].reset(); //empty out the textboxes in the form
+                    $(function () {
+                        var row = '<tr><td>' + cof.CoffeeName
+                            + '</td><td>' + cof.Price
+                            + '</td><td>' + cof.Image
+                            + '</td><td>' + cof.Country
+                            + '</td><td>' + cof.Region
+                            + '</td><td>Refresh to view options</td></tr>';
+                        $("#CoffeeTable").append(row);
+
+
+                    });
+                }
+            });
+        });
+
+        //Step 21 - react to click + update record
+        //AJAX UPDATE//
+        var originalContent = null;
+
+        $("a.EditLink").click(function (e) {
+            e.preventDefault();
+            var coffeeID = $(this).attr("id");
+
+            var row = $("#Coffee-" +
+                coffeeID).children();
+
+            originalContent = {
+                CofId: coffeeID,
+                CofName: row[0].innerText,
+                Price: row[1].innerText,
+                //Image: 
+                Country: row[2].innerText,
+                Region: row[3].innerText
+
+            };
+            console.log(originalContent);
+
+            $.get("/Coffee/CoffeeEdit/" +
+                coffeeID, function (data) {
+                    $("#Coffee-" +
+                        coffeeID).replaceWith(
+                            '<tr id="Coffee-' + coffeeID + '"><td colspan="5">' + data + '</td></tr>'
+                        );
+                });
+
+        });
+
+        $(document).on("click", "#saveUpdate", function (e) {
+            var formData =
+                $("#CoffeeEditForm").serializeArray();
+            console.log(formData);
+            $('#MessageContent').html("<div class='alert alert-info'>Please Wait...</div>");
+
+            $.ajax({
+
+                url: "/Coffee/AjaxEdit", //change action
+                type: "POST",
+                data: formData,
+                dataType: "json",
+                success: function (data) {
+                    //change message
+                    $('#MessageContent').html("<div class='alert alert-success'>Your Record was Successfully Updated!</div>");
+                    $('#CoffeeEditForm')[0].reset();
+
+                    $(function () {
+                        var row = '<tr><td>' +
+                            data.CoffeeName +
+                            '</td><td>' + data.Price +
+                            '</td><td>' + data.Country +
+                            '</td><td>' + data.Region +
+                            '</td><td>Refresh to view options</td></tr>';
+                        $('#Coffee-' +
+                            data.coffeeID).replaceWith(row);
+                    });
+                },
+                error: function (e) {
+                    $('#MessageContent').html("<div class='alert alert-warning'>There was an error. Please try again or contact the site administrator.</div>");
+                    $(function () {
+                        var row = '<tr id="Coffee-' +
+                            originalContent.CofId + '"> <td>' + originalContent.CofName + '</td><td>' +
+                            originalContent.Price + '</td><td>' + originalContent.Country + '</td><td>' + originalContent.Region +
+                            '</td><td>Refresh to view options</td></tr>';
+
+                        $('#Coffee-' +
+                            data.coffeeID).replaceWith(row);
+                    });
+
+
+                }
+            });
+
+
+        });
+
+    </script>
+    
+    
+    
+    }
