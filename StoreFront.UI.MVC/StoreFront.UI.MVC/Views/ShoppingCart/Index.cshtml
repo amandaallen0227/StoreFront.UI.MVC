@@ -7,97 +7,98 @@
     int totalCountOfItems = 0;
 }
 
+<div class="center">
+    <img src="~/Content/images/coffeeBags/bagsbagsbags.png" alt="header img" style="width: 100%" class="header-image" />
+</div>
 
 
-<div id="content-wrapper" style="padding: 9%;">
-    <div class="container">
-        <div id="content-wrapper">
-            <p class="text-right">
-                @Html.ActionLink("Buy More Coffee", "Index", "Coffee", null, new { @class = "btn btn-info" })
-            </p>
-
-            <h2>@ViewBag.Title</h2>
-
-            @if (Model.Count == 0)
-            {
-                <p class="alert alert-warning">
-                    There are no items in your cart.
+<section id="portfolio" class="white">
+    <div id="content-wrapper" style="padding: 9%;">
+        <div class="container">
+            <div id="content-wrapper">
+                <p class="text-right">
+                    @Html.ActionLink("Buy More Coffee", "Index", "Coffee", null, new { @class = "btn btn-sm btn-danger" })
                 </p>
-            }
-            else
-            {
 
-                <table class="table">
-                    <tr>
-                        <th>
-                            Coffee
-                        </th>
-                        <th>
-                            Quanitity
-                        </th>
-                        <th>
-                            Name
-                        </th>
-                        <th>
-                            Price
-                        </th>
-                        <th>
-                            Total
-                        </th>
-                        <th></th>
-                    </tr>
+                <h2>@ViewBag.Title</h2>
 
-                    @foreach (var item in Model)
-                    {
+                @if (Model.Count == 0)
+                {
+                    <p class="alert alert-warning">
+                        There are no items in your cart.
+                    </p>
+                }
+                else
+                {
+
+                    <table class="table">
                         <tr>
-                            <td>
-                                <img src="~/Content/images/coffeemessenger/@item.Value.Coffee.Images" alt="Coffee bag" style="max-height: 100px; width: auto;" @item.Value.Coffee.CoffeeName " title="@item.Value.Coffee.CoffeeName" />
-                            </td>
-                            <td>
-                                @using (Html.BeginForm("UpdateCart", "ShoppingCart", FormMethod.Post))
-                                {
-                                    @Html.Hidden("coffeeId", item.Key)
-                                    @Html.TextBox("qty", item.Value.Qty, new { @class = "form-control", style = "max-width: 50px; display: inline;" })
-                                    <input type="submit" value="Update Quantity" class="btn btn-info" />
-                                }
-
-                                @{
-                                    totalCountOfItems += item.Value.Qty;
-                                }
-
-                            </td>
-                            <td>
-                                @item.Value.Coffee.CoffeeName
-                            </td>
-                            <td>
-                                @string.Format($"{item.Value.Coffee.Price}") <!--not preferred - should do this in METADATA-->
-                            </td>
-                            <td>
-                                @{
-                                    decimal? lineTotal = item.Value.Qty * item.Value.Coffee.Price;
-                                    cartTotal += lineTotal;
-                                }
-
-                                @string.Format($"{lineTotal:c}")
-                            </td>
-                            <td>
-                                @Html.ActionLink("Remove From Cart", "RemoveFromCart", new { id = item.Key })
-                            </td>
+                            <th>
+                                Coffee
+                            </th>
+                            <th>
+                                Quanitity
+                            </th>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                Price
+                            </th>
+                            <th>
+                                Total
+                            </th>
+                            <th></th>
                         </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="~/Content/images/coffeemessenger/@item.Value.Coffee.Images" alt="Coffee bag" style="max-height: 100px; width: auto;" @item.Value.Coffee.CoffeeName title="@item.Value.Coffee.CoffeeName" />
+                                </td>
+                                <td>
+                                    @using (Html.BeginForm("UpdateCart", "ShoppingCart", FormMethod.Post))
+                                    {
+                                        @Html.Hidden("coffeeId", item.Key)
+                                        @Html.TextBox("qty", item.Value.Qty, new { @class = "form-control", style = "max-width: 50px; display: inline;" })
+                                        <input type="submit" value="Update Quantity" class="btn btn-info btn-sm" />
+                                    }
+
+                                    @{
+                                        totalCountOfItems += item.Value.Qty;
+                                    }
+
+                                </td>
+                                <td>
+                                    @item.Value.Coffee.CoffeeName
+                                </td>
+                                <td>
+                                    @string.Format($"{item.Value.Coffee.Price}") <!--not preferred - should do this in METADATA-->
+                                </td>
+                                <td>
+                                    @{
+                                        decimal? lineTotal = item.Value.Qty * item.Value.Coffee.Price;
+                                        cartTotal += lineTotal;
+                                    }
+
+                                    @string.Format($"{lineTotal:c}")
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Remove From Cart", "RemoveFromCart", new { id = item.Key })
+                                </td>
+                            </tr>
                         }
 
-
-                        }
                     </table>
                     <p class="alert alert-success text-center">
                         You have @totalCountOfItems item@(totalCountOfItems == 1 ? "" : "s") in your cart.
                         Your total before taxes and shipping is @string.Format($"{cartTotal:c}")
                     </p>
 
+                }
 
-                    
-
-
-                </div>
+            </div>
+        </div>
     </div>
-</div>
+    </section>

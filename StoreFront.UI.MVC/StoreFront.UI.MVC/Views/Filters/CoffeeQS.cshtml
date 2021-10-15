@@ -5,107 +5,113 @@
 }
 
 <div class="center">
-    <img src="~/Content/images/coffeeBeans/Explore Our Offerings (1).jpg" alt="" style="width: 100%" />
+    <img src="~/Content/images/coffeeBeans/Explore Our Offerings (1).jpg" alt="" style="width: 100%" class="header-image" />
 </div>
-
-
-<div id="content-wrapper" style="padding: 9%;">
-    <div class="container">
-        <div id="content-wrapper">
-            <h2>Sustainable coffee choosen with purpose.</h2>
-            @if (User.IsInRole("Admin"))
-            {
-                <p>
-                    @Html.ActionLink("Create New", "Create")
-                </p>
-            }
-                <table class="table data-table table--striped">
-                    <thead>
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Images)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.CoffeeName)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Description)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Price)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Country)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Region)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.CoffeeType.Name)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.CoffeeSupplier.SupplierName)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.CoffeeStatu.StatusName)
-                            </th>
-
-
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
+<div>
+    <section id="portfolio" class="white">
+        <div class="container">
+      
+            <div id="content-wrapper" style="padding-top: 3%;">
+                <div class="container">
+                    <div id="content-wrapper">
+                        <h2>Sustainable coffee choosen with purpose.</h2>
+                        @if (User.IsInRole("Admin"))
                         {
-                            <tr>
-                                <td>
-                                    @*@Html.DisplayFor(modelItem => item.Images)*@
-                                    <a href="@Url.Action("Details", new { id = item.Images})" title="@item.CoffeeName">
-                                        <img src="~/Content/images/coffeemessenger/@item.Images" alt="@item.CoffeeName coffee image" style="max-height: 100px; width: auto;" />
-                                    </a>
-                                    @Html.ActionLink("Details", "Details", new { id = item.CoffeeID })
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CoffeeName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Description)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Price)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Country)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Region)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CoffeeType.Name)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CoffeeSupplier.SupplierName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CoffeeStatu.StatusName)
-                                </td>
-                                @if (User.IsInRole("Admin"))
-                                {
-                                    <td>
-                                        @Html.ActionLink("Edit", "Edit", new { id = item.CoffeeID }) |
-
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.CoffeeID })
-
-
-                                    </td>
-                                }
-                            </tr>
+                        <p>
+                            @Html.ActionLink("Create", "AjaxCreate")
+                            @*<a href="@Url.Action("AjaxCreate", "Filters")">Create</a>      *@
+                        </p>
                         }
-                    </tbody>
-                </table>
+                        <table class="table data-table table--striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Images)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CoffeeName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Description)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Price)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Country)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Region)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CoffeeType.Name)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CoffeeSupplier.SupplierName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CoffeeStatu.StatusName)
+                                    </th>
 
+
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @*@Html.DisplayFor(modelItem => item.Images)*@
+                                            <a href="@Url.Action("Details", "Coffee", new { id = item.Images})" title="@item.CoffeeName">
+                                                <img src="~/Content/images/coffeemessenger/@item.Images" alt="@item.CoffeeName coffee image" style="max-height: 100px; width: auto;" />
+                                            </a>
+                                            <a href="@Url.Action("Details", "Coffee", new { id = item.CoffeeID} )"></a>
+                                           
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CoffeeName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Description)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Price)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Country)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Region)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CoffeeType.Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CoffeeSupplier.SupplierName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CoffeeStatu.StatusName)
+                                        </td>
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                            <td>                                                
+                                                <a href="@Url.Action("Edit", "Coffee", new { id=item.CoffeeID})">Edit</a> |
+                                                <a href="@Url.Action("Delete", "Coffee", new { id = item.CoffeeID})">Delete</a>                                                
+                                            </td>
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
             </div>
-    </div>
+
+            <div class="gap"></div>
+        </div>
+    </section>
 </div>
 
 @section scripts{

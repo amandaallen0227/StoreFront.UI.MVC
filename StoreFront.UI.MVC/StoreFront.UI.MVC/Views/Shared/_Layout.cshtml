@@ -36,11 +36,7 @@
 
 
 </head><!--/head-->
-@*<div id="search-wrapper">
-        <div class="container">
-            <input id="search-box" placeholder="Search">
-        </div>
-    </div>*@
+
 
 <body>
     <div id="preloader"></div>
@@ -51,13 +47,13 @@
                     <span class="sr-only">Toggle navigation</span>
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="@Url.Action("CoffeeQS","Filters")"><h1><span class="pe-7s-gleam bounce-in"></span>ANCHOR</h1></a>
+                <a class="navbar-brand" href="@Url.Action("Index","Coffee")"><h1><span class="pe-7s-gleam bounce-in"></span>ANCHOR</h1></a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="@Url.Action("Index","Home")">Home</a></li>
-                    <li><a href="@Url.Action("CoffeeQS","Filters")">Shop</a></li>
-                    <li><a href="@Url.Action("Index","CoffeeSuppliers")">Our Partners</a></li>
+                    <li><a href="@Url.Action("Index","Coffee")">Shop</a></li>
+                    @*<li><a href="@Url.Action("Index","CoffeeSuppliers")">Our Partners</a></li>*@
                     <li><a href="@Url.Action("Contact","Home")">Contact</a></li>
                     <li><a href="@Url.Action("About","Home")">About</a></li>
                     <li class="nav-item dropdown">
@@ -79,17 +75,11 @@
                                 {
                                     nbrItems += item.Value.Qty;
                                 }
-
-
                             }
-
 
                         }
                         <a href="@Url.Action("Index", "ShoppingCart")">Cart<i class="fa fa-shopping-cart"></i><span class="cart-text">@nbrItems</span></a>
-
                     </li>
-
-                    @*<li><span class="search-trigger"><i class="fas fa-search"></i></span></li>*@
                 </ul>
             </div>
         </div>
@@ -97,10 +87,11 @@
 
 
     <div id="content-wrapper">
+
         @* Step 8 *@
-        <div id="MessageDisplay" class="row">
+        @*<div id="MessageDisplay" class="row">
             <div class="col-md-10 col-md-offset-1" id="MessageContent"></div>
-        </div>
+        </div>*@
         @RenderBody()
     </div>
 
@@ -121,7 +112,7 @@
                                     <img class="widget-img" src="~/Content/images/coffeeBeans/nafinia-putra-Kwdp-0pok-I-unsplash.jpg" alt="">
                                 </div>
                                 <div class="media-body">
-                                    <span class="media-heading"><a href="@Url.Action("CoffeeQS","Filters")">Shop Here</a></span>
+                                    <span class="media-heading"><a href="@Url.Action("Index","Coffee")">Shop Here</a></span>
                                     <small class="muted">Roasted to order, your journey starts here.</small>
                                 </div>
                             </div>
@@ -150,13 +141,10 @@
             <div>
                 @if (User.IsInRole("Admin"))
                 {
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown"> <b>Admin Tools</b> </a>
-                    <ul>
-                        <li><a href="@Url.Action("Index","Employees")">Employees</a></li>
-                        <li><a href="@Url.Action("Index","Customers")">Customers</a></li>
-                        <li><a href="@Url.Action("Index","CoffeeSuppliers")">Suppliers</a></li>
-                        <li><a href="@Url.Action("CoffeeQS","Filters")">Coffees</a></li>
-                    </ul>
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown"> <b>Admin Tools:</b> </a>                   
+                        <a href="@Url.Action("Index","Employees")">Employees</a>
+                        <a href="@Url.Action("Index","Customers")">Customers</a>
+                        <a href="@Url.Action("Index","CoffeeSuppliers")">Suppliers</a>                                       
                 }
             </div>
         </div><!--/.col-md-3-->
@@ -166,12 +154,9 @@
                 <div class="row">
                     <div class="col-sm-8">
                         &copy; 2021 ANCHOR @*<a href="https://templatemag.com/bootstrap-templates/">Bootstrap templates</a>*@
+                        @*<a id="gototop" class="gototop" href="@ViewBag.Title"><i class="fas fa-arrow-up"></i>Back To Top</a>*@<!--#gototop-->
                     </div>
-                    <div class="col-sm-4">
-                        <ul class="pull-right">
-                            <li><a id="gototop" class="gototop" href="@ViewBag.Title"><i class="fas fa-arrow-up"></i></a>  Back To Top</li><!--#gototop-->
-                        </ul>
-                    </div>
+                   
                 </div>
             </div>
         </footer><!--/#footer-->

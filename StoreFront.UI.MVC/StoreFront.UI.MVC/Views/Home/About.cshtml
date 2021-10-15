@@ -3,7 +3,7 @@
 }
 
 <div class="center">
-    <img src="~/Content/images/coffeeBags/About.jpg" alt="img" style="width: 100%" id="home-image">
+    <img src="~/Content/images/coffeeBags/About.jpg" alt="img" style="width: 100%" class="header-image">
 
 </div>
 
@@ -12,24 +12,39 @@
         <section id="about-us" class="white">
             <div class="container">
 
-                <div class="row-fluid">
-                    <div class="span12">
-                        <h2>Who We Are </h2>
+                <div class="home-content about clearfix">
+                    <div id="aboutHeader" class="span12">
+                        <h2>Company Overview</h2>
                         <p>
-                            In 2013, three small coffee companies with like-minded people teamed up to discuss the future of coffee in Kansas City. With an agreement to focus on equality throughout the coffee supply chain, high quality products and service, we launched Messenger Coffee. For the first four years, we devoted our time to building relationships with coffee producers and serving other coffee shops with fresh roasted coffee, consulting and barista training. We were building the company and hopping from warehouse to warehouse in the suburbs while searching for the perfect location to call home. In October of 2017, we opened our flagship roasting facility and cafe at 1624 Grand Boulevard in the heart of the city. This big, beautiful space stands as a resource for our wholesale accounts and our customers can now experience our coffee roasting first hand.
+                            In 2013, three small coffee companies with like-minded people teamed up to discuss the future of coffee in Kansas City. With an agreement to focus on equality throughout the coffee supply chain, high quality products and service, we launched Anchor Coffee. For the first four years, we devoted our time to building relationships with coffee producers and serving other coffee shops with fresh roasted coffee, consulting and barista training. We were building the company and hopping from warehouse to warehouse in the suburbs while searching for the perfect location to call home. In October of 2017, we opened our roasting facility and cafe at 1624 Grand Boulevard in the heart of the city. This big, beautiful space stands as a resource for our wholesale accounts and our customers who can now experience our coffee roasting first hand.
                             It’s good to be home.
                         </p>
-
-                        <h2>Company Overview</h2>
-                        <p>Relationships With Our Farmers / Sourcing</p>
-                        <p>Quality, Excellence, and the drive to Grow</p>
-                        <p>Service/s</p>
-                        <p>Giving</p>
-
                     </div>
+                    <div class="about-P">
+                        <h2 id="contentLeft">Sustainability</h2>
+                        <p>
+                            We begin by purchasing premium green coffee from farms that practice traditional old world cultivation methods, growing coffee sustainably in its natural environment. We have found that the best and most complex coffees – the ones we most enjoy and use in our offerings – come from small farms that grow coffee in this manner.
+                        </p>
+                    </div>
+                    <div class="about-P">
+                        <h2 id="contentRight">Relationships</h2>
+                        <p>
+                            The majority of our coffees are sourced directly with the producers. Regular visits to origin to see the farms help maintain these relationships firsthand - this cultivates a mutually beneficial relationship for all involved. The coffees we buy command a premium price in the market place and that in turn ensures good wages and working conditions at the farms.
+                        </p>
+                    </div>
+                    <div class="about-P">
+                        <h2>Dedication</h2>
+                        <p>
+                            Quality isn’t solely attributed to the green coffees we buy. It also comes from attention to detail. Our staff and wholesale customers alike receive meticulous training on an ongoing basis, and our coffee is roasted daily to ensure freshness. Our uncompromising standards in all areas allow us to offer the exceptional coffee we enjoy everyday.
+                        </p>
+                    </div>
+
+                    @*<div class="center gap fade-down section-heading">
+                        <a href="@Url.Action("Index","Coffee") "><h2 class="main-title">Follow The Quality</h2></a>
+                        <hr>
+                    </div>*@
+
                 </div>
-
-
             </div>
         </section>
     </div>

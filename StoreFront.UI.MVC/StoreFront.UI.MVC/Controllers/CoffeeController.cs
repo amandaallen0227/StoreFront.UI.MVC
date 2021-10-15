@@ -237,7 +237,7 @@ namespace StoreFront.UI.MVC.Controllers
 
             string confirmMessage = $"Delete Coffee item {coffee.CoffeeName} from the database!";
 
-            return Json( new { id = id, message = confirmMessage });
+            return Json(new { id = id, message = confirmMessage });
         }
 
         //Step 13
@@ -259,7 +259,7 @@ namespace StoreFront.UI.MVC.Controllers
             //add + save functionality
             db.Coffees.Add(coffee);
             db.SaveChanges();
-            
+
             //return the object back to the Json view
             return Json(coffee);
         }

@@ -8,16 +8,21 @@
 
 .btn {
     border: 3px solid rgba(255, 255, 255, 0.9);
-    color: #fff;
+    color: rgba(0, 0, 0, 0.4);
     border-radius: 0;
-    margin-top: 35px;
-    font-size: 19px;
+    margin-left: 100px;
+    font-size: 12px;
     font-weight: 400;
     text-transform: uppercase;
     padding: 10px 15px;
     text-shadow: rgba(0, 0, 0, 0.4) 0 1px 1px;
     letter-spacing: 4px;
 }
+
+.btn-info {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
 
 .center {
     text-align: center;
@@ -37,7 +42,7 @@
     background-size: cover;
 }
 
-.center #home-image {
+.center .header-image {
     vertical-align: middle;
     width: 100%;
 }
@@ -77,7 +82,51 @@ p {
     font-family: monospace;
 }
 
+tr td {
+    font-family: monospace;
+}
+
+
 #content-wrapper section {
     padding-top: 60px;
     padding-bottom: 190px;
+}
+
+
+#detailInfo {
+    margin-left: 515px;
+}
+
+div #coffeeDetails {
+    max-height: 665px;
+    width: auto;
+    margin-top: -490px;
+}
+
+#details {
+    padding-top: 175px;
+}
+
+
+/*ABOUT*/
+#aboutHeader {
+    min-height: 230px;
+    min-width: 1024px;
+    text-align: center;
+    opacity: 1;
+}
+
+div .about-P {
+    float: left;
+    max-width: 31%;
+    min-width: 1024px;
+    opacity: 1;
+}
+
+.clearfix {
+    display: block;
+}
+
+div .eConfirm {
+    padding-top: 15%;
 }

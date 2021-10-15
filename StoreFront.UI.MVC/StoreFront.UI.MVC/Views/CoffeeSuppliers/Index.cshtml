@@ -7,54 +7,61 @@
 }
 
 <div class="tile-header">
-    <img src="~/Content/images/coffeeBags/Farm.jpg" alt="hand-in-hand" id="hand-in-hand-coffee" style="width: 100%">
+    <img src="~/Content/images/coffeeBags/Farm.jpg" alt="hand-in-hand" id="hand-in-hand-coffee" style="width: 100%" class="header-image">
 </div>
-
-    <div id="content-wrapper" style="padding: 9%;">
+<div>
+    <section id="portfolio" class="white">
         <div class="container">
-            <div id="content-wrapper">
-                @if (User.IsInRole("Admin"))
-                {
-                    <p>
-                        @Html.ActionLink("Create New", "Create")
-                    </p>
-                }
-                <table class="table">
-                    <tr>                      
-                        <th>
-                            @Html.DisplayNameFor(model => model.SupplierName) 
-                        </th>
-                        <th>
-                        
-                        </th>
-                    </tr>
+            <div id="content-wrapper" style="padding: 9%;">
+                <div class="container">
+                    <div class="clear"></div>
 
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.SupplierName)
-                            </td>
-                            <td>
-                                @if (User.IsInRole("Admin"))
-                                {
-                                    <span>@Html.ActionLink("Edit", "Edit", new { id = item.SupplierID }) |</span>
-                                }
+                    <div id="content-wrapper">
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <p>
+                                @Html.ActionLink("Create New", "Create")
+                            </p>
+                        }
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.SupplierName)
+                                </th>
+                                <th>
 
-                                @Html.ActionLink("Details", "Details", new { id = item.SupplierID })
+                                </th>
+                            </tr>
 
-                                @if (User.IsInRole("Admin"))
-                                {
-                                    <span> | @Html.ActionLink("Delete", "Delete", new { id = item.SupplierID })</span>
-                                }
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SupplierName)
+                                    </td>
+                                    <td>
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                            <span>@Html.ActionLink("Edit", "Edit", new { id = item.SupplierID }) |</span>
+                                        }
 
-                            </td>
-                        </tr>
-                    }
-                </table>
+                                        @Html.ActionLink("Details", "Details", new { id = item.SupplierID })
+
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                            <span> | @Html.ActionLink("Delete", "Delete", new { id = item.SupplierID })</span>
+                                        }
+
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

@@ -210,6 +210,7 @@
     <Content Include="Content\images\bg\bg5.jpg" />
     <Content Include="Content\images\bg\bg6.jpg" />
     <Content Include="Content\images\coffeeBags\About.jpg" />
+    <Content Include="Content\images\coffeeBags\bagsbagsbags.png" />
     <Content Include="Content\images\coffeeBags\battlecreek-coffee-roasters-HvzR2yXtii4-unsplash.jpg" />
     <Content Include="Content\images\coffeeBags\battlecreek-coffee-roasters-_1wDmr4dtuk-unsplash.jpg" />
     <Content Include="Content\images\coffeeBags\blake-wisz-qrTdOMc5EqE-unsplash.jpg" />
@@ -902,8 +903,12 @@
     <Content Include="Views\ShoppingCart\Index.cshtml" />
     <Content Include="Views\Filters\CoffeeQS.cshtml" />
     <Content Include="Views\Coffee\CoffeeDetails.cshtml" />
-    <Content Include="Views\Coffee\AjaxCreate.cshtml" />
     <Content Include="Views\Coffee\CoffeeEdit.cshtml" />
+    <Content Include="Views\Filters\DetailsQS.cshtml" />
+    <Content Include="Views\Filters\AjaxCreate0.cshtml" />
+    <Content Include="Views\Filters\AjaxEdit.cshtml" />
+    <Content Include="Views\Filters\AjaxDelete.cshtml" />
+    <Content Include="Views\Coffee\AjaxCreate.cshtml" />
     <None Include="_Archive\_OldScripts\jquery.validate-vsdoc.js" />
     <None Include="_Archive\_OldScripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Web.config" />

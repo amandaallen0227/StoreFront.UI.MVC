@@ -25,7 +25,7 @@ namespace StoreFront.DATA.EF//.Metadata
         //copy props from EF class here and apply data annotations 
         public int CoffeeID { get; set; }
 
-        [Required(ErrorMessage = "*  Name is required")]
+        [Required(ErrorMessage = "This field is required")]
         [StringLength(50, ErrorMessage = "* Cannot exceed 50 characters")]
         [Display(Name = "Coffee Name")]
         public string CoffeeName { get; set; }
@@ -94,21 +94,21 @@ namespace StoreFront.DATA.EF//.Metadata
         //copy props from EF class here and apply data annotations 
         public int SupplierID { get; set; }
 
-        [Required(ErrorMessage = "* Supplier is required")]
-        [StringLength(15, ErrorMessage = "* Cannot exceed 15 characters")]
-        [Display(Name = "Partners")]
+        [Required(ErrorMessage = "This field is required.")]
+        [StringLength(15, ErrorMessage = "* Cannot exceed 15 characters.")]
+        [Display(Name = "Supplier Name")]
         public string SupplierName { get; set; }
 
-        [StringLength(1000, ErrorMessage = "* Cannot exceed 1000 characters")]
+        [StringLength(1000, ErrorMessage = "* Cannot exceed 1000 characters.")]
         [UIHint("MultilineText")]
         public string Description { get; set; }
 
         public string Images { get; set; }
 
-        [StringLength(25, ErrorMessage = "* Cannot exceed 25 characters")]
+        [StringLength(25, ErrorMessage = "* Cannot exceed 25 characters.")]
         public string Region { get; set; }
 
-        [StringLength(25, ErrorMessage = "* Cannot exceed 25 characters")]
+        [StringLength(25, ErrorMessage = "* Cannot exceed 25 characters.")]
         public string Country { get; set; }
 
 
@@ -199,12 +199,12 @@ namespace StoreFront.DATA.EF//.Metadata
         //copy props from EF class here and apply data annotations
         public int EmployeeID { get; set; }
 
-        [Required(ErrorMessage = "* First Name is required")]
+        [Required(ErrorMessage = "This field is required.")]
         [StringLength(20, ErrorMessage = "* Cannot exceed 20 characters")]
         [Display(Name = "First Name")]
         public string FirstN { get; set; }
 
-        [Required(ErrorMessage = "* Last Name is required")]
+        [Required(ErrorMessage = "This field is required.")]
         [StringLength(20, ErrorMessage = "* Cannot exceed 20 characters")]
         [Display(Name = "Last Name")]
         public string LastN { get; set; }
@@ -212,7 +212,7 @@ namespace StoreFront.DATA.EF//.Metadata
         [Display(Name = "Title")]
         public Nullable<int> TitleID { get; set; }
 
-        [Required(ErrorMessage = "* Birth Date is required")]
+        [Required(ErrorMessage = "This field is required.")]
         [StringLength(10, ErrorMessage = "* Cannot Exceed 10 characters")]
         [Display(Name = "Birth Date")]
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
@@ -222,20 +222,20 @@ namespace StoreFront.DATA.EF//.Metadata
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public string HireDate { get; set; }
 
-        [Required(ErrorMessage = "* Address is required")]
+        [Required(ErrorMessage = "This field is required.")]
         [StringLength(25, ErrorMessage = " Cannot exceed 25 characters")]
         public string Address { get; set; }
 
 
-        [Required(ErrorMessage = "* City is required")]
+        [Required(ErrorMessage = "This field is required.")]
         [StringLength(15, ErrorMessage = " Cannot exceed 15 characters")]
         public string City { get; set; }
 
-        [Required(ErrorMessage = "* State is required")]
+        [Required(ErrorMessage = "This field is required.")]
         [StringLength(2, ErrorMessage = " Cannot exceed 2 characters")]
         public string State { get; set; }
 
-        [Required(ErrorMessage = "* Zip is required")]
+        [Required(ErrorMessage = "This field is required.")]
         [StringLength(12, ErrorMessage = " Cannot exceed 12 characters")]
         public string PostalCode { get; set; }
 
@@ -273,4 +273,5 @@ namespace StoreFront.DATA.EF//.Metadata
 
 
     #endregion
+
 }

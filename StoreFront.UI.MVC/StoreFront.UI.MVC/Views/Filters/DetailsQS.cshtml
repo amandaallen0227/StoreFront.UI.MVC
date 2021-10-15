@@ -1,23 +1,26 @@
 ﻿@model StoreFront.DATA.EF.Coffee
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = $"{Model.CoffeeName}";
 }
 
 <div id="content-wrapper">
     <div id="content-wrapper">
-        <section id="about-us" class="white">         
-            <div id="details" class="container">
-                <div id="detailInfo">
+        <section id="about-us" class="white">
+            <div class="container">
+                <h2>@ViewBag.Title</h2>
+
+                <div>
                     <hr />
 
                     <dl class="dl-horizontal">
+
                         <dt>
-                            @Html.DisplayNameFor(model => model.CoffeeName)
+                            @Html.DisplayNameFor(model => model.Description)
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.CoffeeName)
+                            @Html.DisplayFor(model => model.Description)
                         </dd>
 
                         <dt>
@@ -28,21 +31,14 @@
                             @Html.DisplayFor(model => model.Price)
                         </dd>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.Description)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.Description)
-                        </dd>
 
                         @*<dt>
-                @Html.DisplayNameFor(model => model.Images)
-            </dt>*@
+            @Html.DisplayNameFor(model => model.Images)
+        </dt>*@
 
-                        <dd>
+                        @*<dd>
                             @Html.DisplayFor(model => model.Images)
-                        </dd>
+                        </dd>*@
 
                         <dt>
                             @Html.DisplayNameFor(model => model.Country)
@@ -85,28 +81,25 @@
                         </dd>
 
                     </dl>
+                
+
                     @using (Html.BeginForm("AddToCart", "ShoppingCart", new { coffeeId = Model.CoffeeID }, FormMethod.Post, new { @class = "text-centered" }))
                     {
-                        <hr>
                         <span class-label>Quantity: </span>
-
                         @Html.TextBox("Qty", 1, new { @class = "form-control", style = "max-width: 50px; display: inline;" })
-
-                        <input type="submit" value="Add To Cart" class="center-btn btn-dark" />
-                        <hr>
+                        <input type="submit" value="Add To Cart" class="center-btn btn-primary" />
                     }
 
-                    <p>
-                        @Html.ActionLink("Edit", "Edit", new { id = Model.CoffeeID }) |
-                        @Html.ActionLink("Back to List", "Index")
-                    </p>
 
                 </div>
-                @* Coffee Image *@
                 <div class="col-md-6">
-                    <img src="~/Content/images/coffeemessenger/@Model.Images" alt="Coffee Bag" id="coffeeDetails" title="@Model.CoffeeName" />
+                    <img src="~/Content/images/coffeemessenger/@Model.Images" alt="Coffee Bag" style="max-height: 100px; width: auto;" title="@Model.CoffeeName" />
                 </div>
 
+                <p>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.CoffeeID }) |
+                    @Html.ActionLink("Back to List", "Index")
+                </p>
             </div>
         </section>
     </div>
