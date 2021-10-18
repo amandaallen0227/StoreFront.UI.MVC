@@ -24,10 +24,10 @@
                         <div id="CoffeeCreate">
                             @Html.Partial("AjaxCreate", new StoreFront.DATA.EF.Coffee())
                         </div>
-                        @*<p>
-                                @Html.ActionLink("Create New", "Create")
-                            </p>*@
                     }
+
+
+
                     @* Step 4 *@
                     <table class="table data-table table-striped" id="CoffeeTable">
                         <thead>
@@ -51,10 +51,10 @@
                                     @Html.DisplayNameFor(model => model.Region)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.CoffeeType.Name)
+                                    @Html.DisplayNameFor(model => model.CoffeeType)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.CoffeeSupplier.SupplierName)
+                                    @Html.DisplayNameFor(model => model.CoffeeSupplier)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.CoffeeStatu.StatusName)
@@ -71,14 +71,14 @@
 
                                 <tr>
                                     <td>
-                                        <img src="~/Content/images/coffeemessenger/@item.Images" alt="@item.CoffeeName coffee image" style="max-height: 100px; width: auto;" />
+                                        <img src="~/Content/images/_messengerimages/@item.Images" alt="@item.CoffeeName coffee image" style="max-height: 100px; width: auto;" />
                                         @Html.ActionLink("Details", "Details", new { id = item.CoffeeID })
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.CoffeeName)
                                         @*<a href="@Url.Action("Name", new { id = item.CoffeeID})" title="@item.CoffeeName">
-                                                @Html.DisplayFor(modelItem => item.CoffeeName) <br />
-                                            </a>*@
+                                @Html.DisplayFor(modelItem => item.CoffeeName) <br />
+                            </a>*@
                                         <!--Step 10-->
                                         @*@Html.ActionLink("Details", "Details", new { id = item.CoffeeID })*@
                                     </td>
@@ -95,7 +95,7 @@
                                         @Html.DisplayFor(modelItem => item.Region)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.CoffeeType.Name, new { htmlAttributes = new { placeholder = "Type" } })
+                                        @Html.DisplayFor(modelItem => item.CoffeeType.Name)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.CoffeeSupplier.SupplierName)
@@ -219,7 +219,8 @@
                     $("#MessageContent").html("<div class='alert alert-success>Publisher added!</div>");
                     $("#CoffeeCreateForm")[0].reset(); //empty out the textboxes in the form
                     $(function () {
-                        var row = '<tr><td>' + cof.CoffeeName
+                        var row = '<tr><td>' + cof.CoffeeName 
+                            
                             + '</td><td>' + cof.Price
                             + '</td><td>' + cof.Image
                             + '</td><td>' + cof.Country

@@ -104,7 +104,7 @@
             <PropertyRef Name="TypeID" />
           </Key>
           <Property Name="TypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="15" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -188,7 +188,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Coffee_CoffeeType">
+        <Association Name="FK_Coffee_CoffeeType1">
           <End Role="CoffeeType" Type="Self.CoffeeType" Multiplicity="1" />
           <End Role="Coffee" Type="Self.Coffee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -335,7 +335,7 @@
             <End Role="CoffeeSupplier" EntitySet="CoffeeSupplier" />
             <End Role="Coffee" EntitySet="Coffee" />
           </AssociationSet>
-          <AssociationSet Name="FK_Coffee_CoffeeType" Association="Self.FK_Coffee_CoffeeType">
+          <AssociationSet Name="FK_Coffee_CoffeeType1" Association="Self.FK_Coffee_CoffeeType1">
             <End Role="CoffeeType" EntitySet="CoffeeType" />
             <End Role="Coffee" EntitySet="Coffee" />
           </AssociationSet>
@@ -411,7 +411,7 @@
             <PropertyRef Name="TypeID" />
           </Key>
           <Property Name="TypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Coffees" Relationship="Self.FK_Coffee_CoffeeType1" FromRole="CoffeeType" ToRole="Coffee" />
         </EntityType>
         <EntityType Name="Customer">

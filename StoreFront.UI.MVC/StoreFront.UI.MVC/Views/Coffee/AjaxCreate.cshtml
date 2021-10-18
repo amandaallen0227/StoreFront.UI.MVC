@@ -3,15 +3,22 @@
 
 @* Step 19 - clean up html to display in single row, upate BeginForm() *@
 
-@using (Html.BeginForm("AjaxCreate", "Coffee", FormMethod.Post, new { id = "CoffeeCreateForm" }))
+@using (Html.BeginForm("", "", FormMethod.Post, new { id = "CoffeeCreateForm" }))
 {
     @Html.AntiForgeryToken()
-    // id="CoffeeCreateForm"
+   
 <div class="form-horizontal">
 
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <!--TODO build out img upload utility //DONE-->
     <div class="form-group">
+        @Html.LabelFor(model => model.Images, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="file" name="coffeBag" />
+        </div>
+    </div>
 
+    <div class="form-group">
         <div class="col-md-10">
             @Html.EditorFor(model => model.CoffeeName, new { htmlAttributes = new { @class = "form-control", placeholder = "Name" } })
             @Html.ValidationMessageFor(model => model.CoffeeName, "", new { @class = "text-danger" })
@@ -20,24 +27,12 @@
 
     <div class="form-group">
         <div class="col-md-10">
-            @Html.EditorFor(model => model.CoffeeStatusID, new { htmlAttributes = new { @class = "form-control", placeholder = "Type '1' for Status ID" } })
-
-            @Html.ValidationMessageFor(model => model.CoffeeStatusID, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-
-    <div class="form-group">
-
-        <div class="col-md-10">
-
-            @Html.EditorFor(model => model.TypeID, new { htmlAttributes = new { @class = "form-control", placeholder = "Coffee Type" } })
-            @Html.ValidationMessageFor(model => model.TypeID, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", placeholder = "Description" } })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-
         <div class="col-md-10">
             @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", placeholder = "Price" } })
             @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
@@ -45,42 +40,6 @@
     </div>
 
     <div class="form-group">
-
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", placeholder = "Description" } })
-            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-
-
-    <div class="form-group">
-
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.SupplierID, new { htmlAttributes = new { @class = "form-control", placeholder = "Supplier Name" } })
-            @Html.ValidationMessageFor(model => model.SupplierID, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <!--TODO build out img upload utility-->
-    <div class="form-group">
-        @Html.LabelFor(model => model.Images, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">      
-            <input type="file" name="coffeBag" />
-        </div>
-    </div>
-
-
-    @*<div class="form-group">
-            @Html.LabelFor(model => model.Images, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Images, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Images, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-    <div class="form-group">
-
         <div class="col-md-10">
             @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control", placeholder = "Country" } })
             @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
@@ -88,25 +47,47 @@
     </div>
 
     <div class="form-group">
-
         <div class="col-md-10">
             @Html.EditorFor(model => model.Region, new { htmlAttributes = new { @class = "form-control", placeholder = "Region" } })
             @Html.ValidationMessageFor(model => model.Region, "", new { @class = "text-danger" })
         </div>
     </div>
+  
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.DropDownList("TypeID", null, "Coffee Type", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CoffeeStatusID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.DropDownList("SupplierID", null, "Supplier Name", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.SupplierID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @* REMOVED //add later //DONE. *@
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.DropDownList("CoffeeStatusID", null, "Stock?", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.SupplierID, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Submit" class="btn btn-danger" />
+            <input type="submit" value="Submit" class="btn btn-white" />
+            @*@Html.ActionLink("Close", "Index", new { htmlAttributes = new { @class="btn btn-bg btn-info"} })*@
         </div>
     </div>
 </div>
-}
+        }
 
-<div>
-    @Html.ActionLink("Close", "Index")
-</div>
+        @*<div>
+            @Html.ActionLink("Close", "Index")
+        </div>*@
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }

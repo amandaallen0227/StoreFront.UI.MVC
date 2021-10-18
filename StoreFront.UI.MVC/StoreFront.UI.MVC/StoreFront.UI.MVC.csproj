@@ -297,6 +297,11 @@
     <Content Include="Content\images\team\team03.jpg" />
     <Content Include="Content\images\team\team04.jpg" />
     <Content Include="Content\images\world-map.png" />
+    <Content Include="Content\images\_messengerimages\ethiopia-demeka-washed.jpg" />
+    <Content Include="Content\images\_messengerimages\el-salvador-captail-del-mundo-honey.jpg" />
+    <Content Include="Content\images\_messengerimages\colombia-tolima-decaf.jpg" />
+    <Content Include="Content\images\_messengerimages\blend-silhouette-blend.jpg" />
+    <Content Include="Content\images\_messengerimages\guatemala-el-zapote.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\fonts\glyphicons-halflings-regular.svg" />

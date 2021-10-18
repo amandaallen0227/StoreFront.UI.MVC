@@ -1145,9 +1145,10 @@ ul.tag-cloud li {
     display: block;
     font-weight: 400;
 }
-
+/*Footer*/
 .row > div {
     margin-bottom: 10px;
+    width: 33%;
 }
 
 ul.unstyled {
@@ -1515,7 +1516,7 @@ img.author-box-image {
 #footer-wrapper {
     z-index: 1;
     padding-top: 10px;
-    position: fixed;
+    /*position: fixed;*/
     bottom: 0;
     width: 100%;
     background-color: #202020;

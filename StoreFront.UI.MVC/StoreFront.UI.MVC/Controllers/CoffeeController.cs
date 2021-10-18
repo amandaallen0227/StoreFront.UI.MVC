@@ -23,6 +23,9 @@ namespace StoreFront.UI.MVC.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
+            ViewBag.CoffeeStatusID = new SelectList(db.CoffeeStatus, "CoffeeStatusID", "StatusName");
+            ViewBag.SupplierID = new SelectList(db.CoffeeSuppliers, "SupplierID", "SupplierName");
+            ViewBag.TypeID = new SelectList(db.CoffeeTypes, "TypeID", "Name");
             var coffees = db.Coffees.Include(c => c.CoffeeStatu).Include(c => c.CoffeeSupplier).Include(c => c.CoffeeType);
             return View(coffees.ToList());
         }
@@ -102,6 +105,7 @@ namespace StoreFront.UI.MVC.Controllers
 
                 }
                 #endregion
+               // ViewBag.TypeID = new SelectList(db.CoffeeTypes, "TypeID", "Name");
                 db.Coffees.Add(coffee);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -228,6 +232,7 @@ namespace StoreFront.UI.MVC.Controllers
 
         // Step 9
         [AcceptVerbs(HttpVerbs.Post)]
+        [Authorize(Roles = "Admin")]
         public JsonResult AjaxDelete(int id)
         {
             Coffee coffee = db.Coffees.Find(id);
@@ -250,10 +255,23 @@ namespace StoreFront.UI.MVC.Controllers
             //Create partial View()
         }
 
+        //[HttpGet]
+        //[Authorize(Roles = "Admin")]
+        //public JsonResult AjaxCreate()
+        //{
+        //    ViewBag.CoffeeStatusID = new SelectList(db.CoffeeStatus, "CoffeeStatusID", "StatusName");
+        //    ViewBag.SupplierID = new SelectList(db.CoffeeSuppliers, "SupplierID", "SupplierName");
+        //    ViewBag.TypeID = new SelectList(db.CoffeeTypes.OrderBy(c => c.Name), "TypeID", "Name");
+        //    var coffee = db.Coffees.Include(c => c.CoffeeStatu).Include(c => c.CoffeeSupplier).Include(c => c.CoffeeType);
+        //    return Json(coffee);
+        //}
+
+
         //Create
         //Step 18 - Create the POST action for the ajax create submission
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public JsonResult AjaxCreate(Coffee coffee)
         {
             //add + save functionality

@@ -31,6 +31,7 @@ namespace StoreFront.DATA.EF//.Metadata
         public string CoffeeName { get; set; }
 
         [Display(Name = "Type")]
+        [Required(ErrorMessage = "This field is required")]
         public int TypeID { get; set; }
 
         [Range(0, double.MaxValue, ErrorMessage = "* Value must be greater than 0")]
